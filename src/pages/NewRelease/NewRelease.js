@@ -3,8 +3,8 @@ import CardManga from "../../components/cardManga";
 import useFetch from "../../hooks/useFetch";
 
 const Page_NewRelease = () => {
-    const newRelease = useFetch(1);
-
+    const newRelease = useFetch(5);
+    
     return (
         <div className="bg-black px-[60px] pb-[60px]">
             <div className="">
@@ -13,7 +13,7 @@ const Page_NewRelease = () => {
                 </h2>
             </div>
             <div className="grid grid-cols-5 gap-[20px]">
-                {newRelease.map((item, index) => (
+                {newRelease.slice(0,6).map((item, index) => (
                     <CardManga
                         key={index}
                         poster={item?.image_poster_link_goc}

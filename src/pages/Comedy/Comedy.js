@@ -3,7 +3,6 @@ import useFetch from "../../hooks/useFetch";
 
 const Page_Comedy = () => {
     const comedy = useFetch(5);
-    console.log(comedy)
     return (
         <div className="bg-black px-[60px] pb-[60px]">
             <div className="grid grid-cols-6 gap-[20px]">
