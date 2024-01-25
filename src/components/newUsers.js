@@ -19,7 +19,7 @@ const NewUsers = () => {
 
     return (
         <>
-            <div>
+            <div style={{zoom:0.5}}>
                 <div className="news-right">
                     <div className="wrap-right-note">
                         <div className="lab">

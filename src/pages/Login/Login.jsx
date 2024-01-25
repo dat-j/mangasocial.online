@@ -38,7 +38,7 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-[url('/public/images/Login/bg-login.jpeg')] h-screen w-screen bg-cover bg-center bg-no-repeat ">
+    <div className="bg-[url('/public/images/Login/bg-login.jpeg')] w-full h-full  bg-cover bg-center bg-no-repeat " >
       <div className="flex justify-center items-center h-full font-semibold">
         <div className="w-[520px] h-[746px] bg-[#353434] flex flex-col gap-[31px] items-center justify-center rounded-xl  ">
           <div className="flex items-center flex-col gap-3 ">

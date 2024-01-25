@@ -22,8 +22,8 @@ const ChapterPage = () => {
       const response = await axios.get(
         `https://hanico.online/rmanga/${slug}`
       );
-
       setChapterDetail(response.data);
+      console.log("chapter detail:",response.data)
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +71,7 @@ const ChapterPage = () => {
   ]
 
   return (
-    <div>
+    <div style={{zoom:0.9}}>
       <div
         className=" w-[100%] h-full bg-cover bg-center bg-no-repeat md:flex md:gap-30 px-[14px] pt-[14px] md:px-[141px] md:pt-[48px] gap-10"
         style={{
@@ -110,7 +110,7 @@ const ChapterPage = () => {
                   fill="#1E1E1E"
                 />
                 <text
-                  x="50%"
+                  x="10%"
                   y="50%"
                   fontSize="57px"
                   fontWeight="bold"
