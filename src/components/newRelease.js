@@ -5,7 +5,6 @@ import useFetch from "../hooks/useFetch";
 const NewRelease = () => {
     const newRelease = useFetch(1);
     const firstFiveItem = newRelease.slice(0, 6);
-    console.log("new relase:",firstFiveItem)
     return (
         <div className="grid grid-cols-6 gap-[20px] px-[60px] pb-[60px]">
             {firstFiveItem.map((item, index) => (

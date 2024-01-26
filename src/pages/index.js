@@ -33,7 +33,7 @@ export default function Index() {
         </div>
         <img className="blur-dots" src="/images/Vector 2.svg" alt=""></img>
         <div className="background-dots"></div>
-        <div className="title-released-comic mt-[450px]">
+        <div className="title-released-comic mt-[500px]">
           <h2>New Released Comic</h2>
           <Link to="/newRelease">
             <p>See all</p>

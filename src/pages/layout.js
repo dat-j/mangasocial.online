@@ -7,15 +7,22 @@ import adroi from "../pages/img/adroi.png";
 import { CiSearch } from "react-icons/ci";
 import { useEffect } from "react";
 import axios from "axios";
+import "../assets/scss/_dropdown.scss"
 export default function Layout({ home }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isServerHovered, setIsServerHovered] = useState(false);
   const [link, setLink] = useState("");
-
+  
   //handle search
   const [input, setInput] = useState("");
   const [search, setSearch] = useState("");
+  const [serverList, setServerList] = useState("https://hanico.online/1");
+  const [numOfServer, setNumOfSever] = useState(0);
+  const [open, setOpen] = useState(false);
 
+  const handleOpen = () => {
+    setOpen(!open);
+  };
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setInput((preState) => ({
@@ -34,6 +41,19 @@ export default function Layout({ home }) {
         // })
         // console.log(results)
       });
+  };
+  const fetchServer = async () => {
+    try {
+      const response = await axios.get(
+        "https://hanico.online/all-server"
+      );
+      console.log("Response: ", response.data, "num: ", numOfServer
+      );
+      setNumOfSever((response.data).length);
+      setServerList(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSearch = async () => {
@@ -109,7 +129,7 @@ export default function Layout({ home }) {
           <Link to="/">
             <div
               className="comic"
-              onMouseEnter={handleMouseEnter}
+              onMouseEnter={()=>fetchServer()}
               onMouseLeave={handleMouseLeave}
             >
               <p>Comic</p>
@@ -131,7 +151,7 @@ export default function Layout({ home }) {
 
           <p>Popular</p>
 
-          <div
+          {/* <div
             className="server"
             onMouseEnter={handleServerMouseEnter}
             onMouseLeave={handleServerMouseLeave}
@@ -146,7 +166,34 @@ export default function Layout({ home }) {
               }
               alt="Arrow"
             />
+          </div> */}
+          <div className="dropdown">
+            <button onClick={handleOpen}>Dropdown</button>
+            {open ? (
+              <ul className="menu">
+                <li className="menu-item">
+                  <button>Menu 1</button>
+                </li>
+                <li className="menu-item">
+                  <button>Menu 2</button>
+                </li>
+                <li className="menu-item">
+                  <button>Menu 3</button>
+                </li>
+                <li className="menu-item">
+                  <button>Menu 4</button>
+                </li>
+                <li className="menu-item">
+                  <button>Menu 5</button>
+                </li>
+                <li className="menu-item">
+                  <button>Menu 6</button>
+                </li>
+              </ul>
+            ) : null}
           </div>
+          
+
           <Link to="/contact-us">
             <p className="contact">Contact us</p>
           </Link>
