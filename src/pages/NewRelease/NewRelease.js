@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardManga from "../../components/cardManga";
 import useFetch from "../../hooks/useFetch";
+import { useSelector } from "react-redux";
 
 const Page_NewRelease = () => {
-    const newRelease = useFetch(1);
+    const sv = useSelector((state)=>state.server.sv);
+    const newRelease = useFetch(sv);
     console.log("index:")
+
     return (
         <div className="bg-black px-[60px] pb-[60px]">
             <div className="">

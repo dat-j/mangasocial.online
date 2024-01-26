@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import SubMenu from "../components/SubMenu/SubMenu";
 import platform from "platform";
@@ -7,9 +7,11 @@ import adroi from "../pages/img/adroi.png";
 import { CiSearch } from "react-icons/ci";
 import { useEffect } from "react";
 import axios from "axios";
-import "../assets/scss/_dropdown.scss"
-export default function Layout(props) {
-  const {changeServer}= props;
+import "../assets/scss/_dropdown.scss";
+import { SviContext } from ".";
+import { changeServer } from "../Redux/Feature/serverSlice";
+import { useDispatch, useSelector } from "react-redux";
+export default function Layout() {
   const [isHovered, setIsHovered] = useState(false);
   const [isServerHovered, setIsServerHovered] = useState(false);
   const [link, setLink] = useState("");
@@ -17,10 +19,14 @@ export default function Layout(props) {
   //handle search
   const [input, setInput] = useState("");
   const [search, setSearch] = useState("");
-  const [serverList, setServerList] = useState("https://hanico.online/1");
-  const [numOfServer, setNumOfSever] = useState(0);
+  const [server, setSever] = useState("0");
   const [open, setOpen] = useState(false);
-
+  const sv = useSelector((state)=>state.server.sv);
+  const dispatch = useDispatch();
+  function test(){
+    
+    console.log("sv:",sv)
+  }
   const handleOpen = () => {
     setOpen(!open);
   };
@@ -48,11 +54,8 @@ export default function Layout(props) {
       const response = await axios.get(
         "https://hanico.online/all-server"
       );
-      console.log("Response: ", response.data, "num: ", numOfServer
+      console.log("Response: ", response.data
       );
-      setNumOfSever((response.data).length);
-      setServerList(response.data);
-      handleOpen();
     } catch (error) {
       console.log(error);
     }
@@ -118,6 +121,10 @@ export default function Layout(props) {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  function changeSV(index){
+    dispatch(changeServer(index));
+    this.forceUpdate();
+  } 
 
   return (
     <>
@@ -171,26 +178,26 @@ export default function Layout(props) {
             />
           </div> */}
           <div className="dropdown">
-            <button onClick={()=>fetchServer()}>Server</button>
+            <button onClick={()=>handleOpen()}>Server</button>
             {open ? (
               <ul className="menu">
                 <li className="menu-item">
-                  <button onClick={changeServer(5)}>Server 1</button>
+                  <button onClick={()=>dispatch(changeServer(1))}>Server 1</button>
                 </li>
                 <li className="menu-item">
-                  <button>Server 2</button>
+                  <button onClick={()=>dispatch(changeServer(2))}>Server 2</button>
                 </li>
                 <li className="menu-item">
-                  <button>Server 3</button>
+                  <button onClick={()=>dispatch(changeServer(3))}>Server 3</button>
                 </li>
                 <li className="menu-item">
-                  <button>Server 4</button>
+                  <button onClick={()=>dispatch(changeServer(4))}>Server 4</button>
                 </li>
                 <li className="menu-item">
-                  <button>Server 5</button>
+                  <button onClick={()=>dispatch(changeServer(5))}>Server 5</button>
                 </li>
                 <li className="menu-item">
-                  <button>Server 6</button>
+                  <button onClick={()=>dispatch(changeServer(6))}>Server 6</button>
                 </li>
               </ul>
             ) : null}

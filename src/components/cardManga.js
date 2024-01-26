@@ -8,7 +8,7 @@ const CardManga = ({ poster, title, rate, update, chapter, path_segment }) => {
     <NavLink to={`/chapter/${path_segment}`}>
       <div className=" cursor-pointer">
         <div className="rounded-xl group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30">
-          <div className="w-[255px] h-[383px]">
+          <div className="w-[200px] h-[300px]">
             <img className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 rounded-[12px]" src={poster}
               alt="" />
           </div>

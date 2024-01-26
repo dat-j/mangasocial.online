@@ -1,9 +1,11 @@
 import React from "react";
 import CardManga from "./cardManga";
 import useFetch from "../hooks/useFetch";
+import { useSelector } from "react-redux";
+
 
 const NewRelease = () => {
-    const newRelease = useFetch(1);
+    const newRelease = useFetch(useSelector((state)=>state.server.sv));
     const firstFiveItem = newRelease.slice(0, 6);
     return (
         <div className="grid grid-cols-6 gap-[20px] px-[60px] pb-[60px]">

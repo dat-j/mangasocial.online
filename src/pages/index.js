@@ -18,10 +18,11 @@ import NewRelease from "../components/newRelease";
 import Page_Comedy from "./Comedy/Comedy";
 import Page_Recommended from "./Recommended/Recommended";
 import BestComicOfWeek from "./bestComicOfWeek/BestComicOfWeek";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-export default function Index(props) {
-  const {svIndex} = props;
-  console.log(svIndex);
+export default function Index() {
+  let sv = useSelector((state)=>state.server.sv)
   return (
     <>
       <div className="cont">
@@ -41,7 +42,7 @@ export default function Index(props) {
             <p>See all</p>
           </Link>
         </div>
-        <NewRelease svIndex={svIndex}/>
+        <NewRelease key={sv}/>
 
         <div className="title-released-comic">
           <h2>Recent Comics</h2>
@@ -49,7 +50,7 @@ export default function Index(props) {
             <p>See all</p>
           </Link>
         </div>
-        <ComicRecent></ComicRecent>
+        <ComicRecent ></ComicRecent>
 
         <div className="title-released-comic">
           <h2>Recommnended Comics</h2>
@@ -107,6 +108,6 @@ export default function Index(props) {
         </div>
         <Comments></Comments>
       </div>
-    </>
+      </>
   );
 }

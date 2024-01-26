@@ -21,6 +21,8 @@ import ItemManga from "../components/MangaItem/ItemManga.jsx";
 import ViewCategory from "../pages/ViewCategory/ViewCategory.jsx";
 import Policy from "../pages/Policy/Policy.jsx";
 import MangaText from "../pages/MangaText/MangaText.jsx";
+import React from "react";
+
 
 const router = createBrowserRouter([
   {
