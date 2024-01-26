@@ -19,7 +19,9 @@ import Page_Comedy from "./Comedy/Comedy";
 import Page_Recommended from "./Recommended/Recommended";
 import BestComicOfWeek from "./bestComicOfWeek/BestComicOfWeek";
 
-export default function Index() {
+export default function Index(props) {
+  const {svIndex} = props;
+  console.log(svIndex);
   return (
     <>
       <div className="cont">
@@ -39,7 +41,7 @@ export default function Index() {
             <p>See all</p>
           </Link>
         </div>
-        <NewRelease></NewRelease>
+        <NewRelease svIndex={svIndex}/>
 
         <div className="title-released-comic">
           <h2>Recent Comics</h2>

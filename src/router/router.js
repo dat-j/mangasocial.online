@@ -29,15 +29,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Index />,
+        element: <Index/>,
       },
       {
         path: "/comic",
-        element: <Page_comic />,
+        element: <Page_comic  />,
       },
       {
         path: "/genres",
-        element: <Page_Genres />,
+        element: <Page_Genres  />,
       },
       {
         path: "/chapper",
@@ -53,19 +53,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/user-profile",
-        element: <UserProfile />,
+        element: <UserProfile  />,
       },
       {
         path: "newRelease",
-        element: <Page_NewRelease />,
+        element: <Page_NewRelease  />,
       },
       {
         path: "recent",
-        element: <Page_Recent />,
+        element: <Page_Recent  />,
       },
       {
         path: "commingsoon",
-        element: <Page_Comming />,
+        element: <Page_Comming  />,
       },
       {
         path: "chapter/:slug",
@@ -77,11 +77,11 @@ const router = createBrowserRouter([
       },
       {
         path: "genres/:category",
-        element: <MangaCategory />,
+        element: <MangaCategory  />,
       },
       {
         path: "/all-category",
-        element: <ViewCategory />,
+        element: <ViewCategory/>,
       },
       {
         path: "/manga-text",

@@ -8,7 +8,8 @@ import { CiSearch } from "react-icons/ci";
 import { useEffect } from "react";
 import axios from "axios";
 import "../assets/scss/_dropdown.scss"
-export default function Layout({ home }) {
+export default function Layout(props) {
+  const {changeServer}= props;
   const [isHovered, setIsHovered] = useState(false);
   const [isServerHovered, setIsServerHovered] = useState(false);
   const [link, setLink] = useState("");
@@ -51,9 +52,11 @@ export default function Layout({ home }) {
       );
       setNumOfSever((response.data).length);
       setServerList(response.data);
+      handleOpen();
     } catch (error) {
       console.log(error);
     }
+    
   };
 
   const handleSearch = async () => {
@@ -118,7 +121,7 @@ export default function Layout({ home }) {
 
   return (
     <>
-      <div className="header-top overflow-y-auto overflow-x-hidden">
+      <div className="header-top">
         <Link to="/">
           <div className="title">
             <img className="img-manga" src="/images/Ellipse 1.svg" alt=""></img>
@@ -129,7 +132,7 @@ export default function Layout({ home }) {
           <Link to="/">
             <div
               className="comic"
-              onMouseEnter={()=>fetchServer()}
+              onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
               <p>Comic</p>
@@ -168,26 +171,26 @@ export default function Layout({ home }) {
             />
           </div> */}
           <div className="dropdown">
-            <button onClick={handleOpen}>Dropdown</button>
+            <button onClick={()=>fetchServer()}>Server</button>
             {open ? (
               <ul className="menu">
                 <li className="menu-item">
-                  <button>Menu 1</button>
+                  <button onClick={changeServer(5)}>Server 1</button>
                 </li>
                 <li className="menu-item">
-                  <button>Menu 2</button>
+                  <button>Server 2</button>
                 </li>
                 <li className="menu-item">
-                  <button>Menu 3</button>
+                  <button>Server 3</button>
                 </li>
                 <li className="menu-item">
-                  <button>Menu 4</button>
+                  <button>Server 4</button>
                 </li>
                 <li className="menu-item">
-                  <button>Menu 5</button>
+                  <button>Server 5</button>
                 </li>
                 <li className="menu-item">
-                  <button>Menu 6</button>
+                  <button>Server 6</button>
                 </li>
               </ul>
             ) : null}

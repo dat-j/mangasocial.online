@@ -3,8 +3,8 @@ import CardManga from "../../components/cardManga";
 import useFetch from "../../hooks/useFetch";
 
 const Page_NewRelease = () => {
-    const newRelease = useFetch(5);
-    
+    const newRelease = useFetch(1);
+    console.log("index:")
     return (
         <div className="bg-black px-[60px] pb-[60px]">
             <div className="">
