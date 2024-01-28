@@ -20,6 +20,9 @@ import Page_Recommended from "./Recommended/Recommended";
 import BestComicOfWeek from "./bestComicOfWeek/BestComicOfWeek";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import Recommended from "../components/recommended";
+import ComedyComics from './../components/comeryComics';
+import Top15Comics from "../components/top15Comics";
 
 export default function Index() {
   let sv = useSelector((state)=>state.server.sv)
@@ -53,12 +56,12 @@ export default function Index() {
         <ComicRecent ></ComicRecent>
 
         <div className="title-released-comic">
-          <h2>Recommnended Comics</h2>
-          <Link to="/recent">
+          <h2>Recommended Comics</h2>
+          <Link to="/recommended">
             <p>See all</p>
           </Link>
         </div>
-        <Page_Recommended />
+        <Recommended />
         <div className="title-released-comic">
           <h2>Comming Soon Comics</h2>
           <Link to="/commingsoon">
@@ -73,7 +76,7 @@ export default function Index() {
             <p>See all</p>
           </Link>
         </div>
-        <BestComicOfWeek />
+        <Top15Comics />
 
         <div className="title-released-comic">
           <h2>Comedy Comics</h2>
@@ -81,14 +84,14 @@ export default function Index() {
             <p>See all</p>
           </Link>
         </div>
-        <Page_Comedy />
+        <ComedyComics />
         <div className="title-released-comic">
           <h2>Free Comicss</h2>
           <Link to={`/`}>
             <p>See all</p>
           </Link>
         </div>
-        <ComicRecent></ComicRecent>
+        <Recommended></Recommended>
         <div className="title-released-comic">
           <h2>News</h2>
           <Link>

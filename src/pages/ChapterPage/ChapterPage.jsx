@@ -55,7 +55,6 @@ const ChapterPage = () => {
   const viewsString = chapterDetail?.views || "";
   const startIndex = viewsString.lastIndexOf("has ") + 4;
   const viewsPart = viewsString.substring(startIndex);
-
   const truncatedDescription =
     chapterDetail?.description?.slice(0, 180) + "... ";
   const fullDescription = chapterDetail?.description;
@@ -152,7 +151,7 @@ const ChapterPage = () => {
                     alt=""
                     className="h-[32px] w-[32px] hidden md:block "
                   />
-                  <div>{`${viewsPart} views`}</div>
+                  <div>{`${viewsString} views`}</div>
                 </div>
                 <div className="flex items-center gap-2 font-medium text-[11px] leading-[16px] md:font-semibold md:text-[22px] md:leading-[28px] text-white ">
                   <img
@@ -194,7 +193,7 @@ const ChapterPage = () => {
                 </button>
                 <button className=" p-[8px]  rounded-[12px] md:px-[52px] md:py-[26px] bg-[#F45F17]  text-white md:rounded-[67px]">
                   <div className="font-bold text-[12px] leading-[16px] md:text-[36px] md:leading-[44px] flex gap-1 md:gap-3 ">
-                    <div>Rate</div>
+                    <div>{chapterDetail?.rate}</div>
                     <img
                       src="/images/ChapterPage/Star 3.png"
                       className="h-[20px] w-[20px] md:h-[48px] md:w-[48px] bg-cover object-cover"

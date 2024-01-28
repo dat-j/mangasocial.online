@@ -4,9 +4,9 @@ import useFetch from "../hooks/useFetch";
 
 const ComicRecent = () => {
     const comicRecent = useFetch(1);
-    const firstFiveItem = comicRecent.slice(0, 6);
+    const firstFiveItem = comicRecent.slice(0, 20);
     return (
-        <div className="grid grid-cols-6 gap-[20px] px-[60px] pb-[60px]">
+        <div className="grid grid-cols-10 gap-[20px] px-[60px] pb-[60px]">
             {firstFiveItem.map((item, index) => (
                 <CardManga
                     key={index}

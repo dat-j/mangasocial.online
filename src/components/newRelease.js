@@ -6,9 +6,9 @@ import { useSelector } from "react-redux";
 
 const NewRelease = () => {
     const newRelease = useFetch(useSelector((state)=>state.server.sv));
-    const firstFiveItem = newRelease.slice(0, 6);
+    const firstFiveItem = newRelease.slice(0, 10);
     return (
-        <div className="grid grid-cols-6 gap-[20px] px-[60px] pb-[60px]">
+        <div className="grid grid-cols-10 gap-[20px] px-[60px] pb-[60px]">
             {firstFiveItem.map((item, index) => (
                 <CardManga
                     key={index}

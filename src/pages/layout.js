@@ -37,7 +37,6 @@ export default function Layout() {
       [name]: value,
     }));
   };
-  console.log(input);
   const fetchData = (value) => {
     fetch("https://hanico.online/")
       .then((response) => response.json())
@@ -180,8 +179,8 @@ export default function Layout() {
           <div className="dropdown">
             <button onClick={()=>handleOpen()}>Server</button>
             {open ? (
-              <ul className="menu">
-                <li className="menu-item">
+              <ul className="menu grid grid-cols-2" onClick={()=>handleOpen()}>
+                <li className="menu-item" >
                   <button onClick={()=>dispatch(changeServer(1))}>Server 1</button>
                 </li>
                 <li className="menu-item">
@@ -198,6 +197,18 @@ export default function Layout() {
                 </li>
                 <li className="menu-item">
                   <button onClick={()=>dispatch(changeServer(6))}>Server 6</button>
+                </li>
+                <li className="menu-item" >
+                  <button onClick={()=>dispatch(changeServer(7))}>Server 7</button>
+                </li>
+                <li className="menu-item">
+                  <button onClick={()=>dispatch(changeServer(8))}>Server 8</button>
+                </li>
+                <li className="menu-item">
+                  <button onClick={()=>dispatch(changeServer(9))}>Server 9</button>
+                </li>
+                <li className="menu-item">
+                  <button onClick={()=>dispatch(changeServer(10))}>Server 10</button>
                 </li>
               </ul>
             ) : null}

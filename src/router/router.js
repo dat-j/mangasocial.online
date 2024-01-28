@@ -22,6 +22,7 @@ import ViewCategory from "../pages/ViewCategory/ViewCategory.jsx";
 import Policy from "../pages/Policy/Policy.jsx";
 import MangaText from "../pages/MangaText/MangaText.jsx";
 import React from "react";
+import Page_Recommended from "../pages/Recommended/Recommended.js";
 
 
 const router = createBrowserRouter([
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "recent",
         element: <Page_Recent  />,
+      },
+      {
+        path: "recommended",
+        element: <Page_Recommended  />,
       },
       {
         path: "commingsoon",
