@@ -9,6 +9,7 @@ const ChapterPage = () => {
   const [chapterDetail, setChapterDetail] = useState();
   const [visibleChapterCount, setVisibleChapterCount] = useState(12);
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const [comment, setComment] = useState("");
   const params = useParams();
   const { slug } = params;
 
@@ -16,7 +17,17 @@ const ChapterPage = () => {
   const handleShowTab = () => {
     setShowTab(!showTab);
   };
-
+  const commentOnchange = (e) => {
+    setComment(e.target.value)
+  };
+  const handleSendComment = async () =>{
+    try {
+      const res = await axios.post(`https://hanico.online/manga/${slug}`,comment)
+      console.log("send cmt:",res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const fetchChapterDetail = async () => {
     try {
       const response = await axios.get(
@@ -311,7 +322,13 @@ const ChapterPage = () => {
           </div>
         )}
       </div>
-      <div>{!showTab && <div>comment</div>}</div>
+      <div className="flex justify-center">{!showTab && 
+      <div className="flex justify-center p-2 bg-black h-[100px] w-full ">
+        <input onChange={(e)=>commentOnchange(e)} className="text-lg w-[60%] rounded-lg"></input>
+        <button className="ml-3 w-[100px] text-lg text-white rounded-lg bg-[rgb(172,93,93)]" onClick={handleSendComment}>Comment</button>
+      </div>
+      }
+      </div>
     </div>
   );
 };
