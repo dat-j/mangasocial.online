@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ChapterCard = ({ chapter, title, poster, des, slug }) => {
+  const sv = useSelector((state)=>state.server.sv);
   const chapterNumber = chapter.replace(`http://hanico.online/manga/${slug}/`, '');
 
   const truncatedDes = des.length > 50 ? `${des.slice(0, 50)}...` : des;

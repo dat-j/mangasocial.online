@@ -2,10 +2,11 @@ import React from "react";
 import CardManga from "./cardManga";
 import useFetch from "../hooks/useFetch";
 
-const ComicRecent = () => {
-    const comicRecent = useFetch(1);
-    console.log(comicRecent)
-    const firstFiveItem = comicRecent.slice(0, 20);
+
+const FreeComic = () => {
+    const recommendedComics = useFetch(6);
+
+    const firstFiveItem = recommendedComics.slice(0, 20);
     return (
         <div className="grid grid-cols-10 gap-[20px] px-[60px] pb-[60px]">
             {firstFiveItem.map((item, index) => (
@@ -15,7 +16,6 @@ const ComicRecent = () => {
                     title={item?.title_manga}
                     rate={item?.rate}
                     update={item.time_release}
-                    chapter={item?.chapter_new}
                     path_segment={item?.path_segment_manga}
 
                 />
@@ -24,4 +24,4 @@ const ComicRecent = () => {
     );
 };
 
-export default ComicRecent;
+export default FreeComic;

@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import prodApis from "../api/home";
 import RankItem from "./rankItem";
+import { useSelector } from "react-redux";
 
 const Rank = () => {
     const [rankComics, setRankComics] = useState([]);
     useEffect(() => {
         getRankComics(9);
     }, []);
-
+    const sv = useSelector((state)=>state.server.sv);
     const getRankComics = async (index) => {
-        const rankComicsResponse = await prodApis.index();
+        const rankComicsResponse = await prodApis.server(sv);
         setRankComics(rankComicsResponse.data[index].data);
     };
 

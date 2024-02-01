@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 import { useSelector } from "react-redux";
 
 const Recommended = () => {
-    const recommendedComics = useFetch(useSelector((state)=>state.server.sv));
+    const recommendedComics = useFetch(2);
 
     const firstFiveItem = recommendedComics.slice(0, 20);
     return (

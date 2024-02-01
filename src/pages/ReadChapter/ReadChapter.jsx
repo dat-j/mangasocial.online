@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import ButtonIcon from "../../components/buttonIcon";
 import { GrLinkNext } from "react-icons/gr";
 import { GrLinkPrevious } from "react-icons/gr";
+import { useSelector } from "react-redux";
 
 const ReadChapter = () => {
   const params = useParams();
@@ -11,9 +12,8 @@ const ReadChapter = () => {
   const [chapterDetail, setChapterDetail] = useState([]);
   const [listChapter, setListChapter] = useState([]);
   const [chooseChapter, setChooseChapter] = useState("");
-
+  const sv = useSelector((state)=>state.server.sv);
   const navigate = useNavigate();
-
   const fetchChapter = async () => {
     try {
       const response = await axios.get(
@@ -28,8 +28,8 @@ const ReadChapter = () => {
 
   const fetchListChapter = async () => {
     try {
-      const response = await axios.get(`https://hanico.online/rmanga/${slug}`);
-      setListChapter(response.data.chapters);
+      const response = await axios.get(`https://hanico.online/${sv}/manga/${slug}`);
+      setListChapter((response.data)[0].chapters);
     } catch (error) {
       console.log(error);
     }

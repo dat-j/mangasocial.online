@@ -23,6 +23,7 @@ import { useSelector } from "react-redux";
 import Recommended from "../components/recommended";
 import ComedyComics from './../components/comeryComics';
 import Top15Comics from "../components/top15Comics";
+import FreeComic from "../components/freeComic";
 
 export default function Index() {
   let sv = useSelector((state)=>state.server.sv)
@@ -45,7 +46,7 @@ export default function Index() {
             <p>See all</p>
           </Link>
         </div>
-        <NewRelease key={sv}/>
+        <NewRelease/>
 
         <div className="title-released-comic">
           <h2>Recent Comics</h2>
@@ -91,7 +92,7 @@ export default function Index() {
             <p>See all</p>
           </Link>
         </div>
-        <Recommended></Recommended>
+        <FreeComic></FreeComic>
         <div className="title-released-comic">
           <h2>News</h2>
           <Link>

@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 
 const Page_NewRelease = () => {
     const sv = useSelector((state)=>state.server.sv);
-    const newRelease = useFetch(sv);
-    console.log("index:")
+    const newRelease = useFetch(0);
+    console.log("index:", newRelease)
 
     return (
         <div className="bg-black px-[60px] pb-[60px]">
@@ -15,8 +15,8 @@ const Page_NewRelease = () => {
                     New Released Comic
                 </h2>
             </div>
-            <div className="grid grid-cols-5 gap-[20px]">
-                {newRelease.slice(0,6).map((item, index) => (
+            <div className="grid grid-cols-10 gap-[20px]">
+                {newRelease.map((item, index) => (
                     <CardManga
                         key={index}
                         poster={item?.image_poster_link_goc}

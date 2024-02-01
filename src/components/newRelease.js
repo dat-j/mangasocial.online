@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 
 const NewRelease = () => {
-    const newRelease = useFetch(useSelector((state)=>state.server.sv));
+    const newRelease = useFetch(0);
     const firstFiveItem = newRelease.slice(0, 10);
     return (
         <div className="grid grid-cols-10 gap-[20px] px-[60px] pb-[60px]">

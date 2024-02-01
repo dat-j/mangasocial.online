@@ -3,16 +3,19 @@ import "./ChapterPage.scss";
 import ChapterCard from "../../components/ChapterCard/ChapterCard";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Comments from "../../components/comments";
+import CMT from "../../components/cmt";
 
 const ChapterPage = () => {
   const [showTab, setShowTab] = useState(true);
-  const [chapterDetail, setChapterDetail] = useState();
+  const [chapterDetail, setChapterDetail] = useState([]);
   const [visibleChapterCount, setVisibleChapterCount] = useState(12);
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [comment, setComment] = useState("");
   const params = useParams();
   const { slug } = params;
-
+  const sv = useSelector((state)=>state.server.sv);
 
   const handleShowTab = () => {
     setShowTab(!showTab);
@@ -31,24 +34,25 @@ const ChapterPage = () => {
   const fetchChapterDetail = async () => {
     try {
       const response = await axios.get(
-        `https://hanico.online/rmanga/${slug}`
+        `https://hanico.online/${sv}/manga/${slug}`
       );
       setChapterDetail(response.data);
       console.log("chapter detail:",response.data)
     } catch (error) {
       console.log(error);
+      console.log("slug:", slug)
     }
   };
 
   useEffect(() => {
     fetchChapterDetail();
-  }, [slug]);
+  }, []);
 
   const handleSeeMore = () => {
     setVisibleChapterCount((prevCount) => prevCount + 10);
   };
 
-  const sortedChapters = chapterDetail?.chapters.sort((a, b) => {
+  const sortedChapters = chapterDetail[0]?.chapters.sort((a, b) => {
     // Lấy 3 số sau ký tự "chapter-"
     const getLastNumber = (url) =>
       parseInt(
@@ -63,12 +67,12 @@ const ChapterPage = () => {
     return chapterNumberA - chapterNumberB;
   });
 
-  const viewsString = chapterDetail?.views || "";
+  const viewsString = chapterDetail[0]?.views || "";
   const startIndex = viewsString.lastIndexOf("has ") + 4;
   const viewsPart = viewsString.substring(startIndex);
   const truncatedDescription =
-    chapterDetail?.description?.slice(0, 180) + "... ";
-  const fullDescription = chapterDetail?.description;
+    chapterDetail[0]?.description?.slice(0, 180) + "... ";
+  const fullDescription = chapterDetail[0]?.description;
 
   let listServer = [
     { src: '/images/ChapterPage/GB.png', title: 'GB' },
@@ -81,7 +85,7 @@ const ChapterPage = () => {
   ]
 
   return (
-    <div style={{zoom:0.9}}>
+    <div style={{ zoom: 0.9 }}>
       <div
         className=" w-[100%] h-full bg-cover bg-center bg-no-repeat md:flex md:gap-30 px-[14px] pt-[14px] md:px-[141px] md:pt-[48px] gap-10"
         style={{
@@ -92,7 +96,7 @@ const ChapterPage = () => {
       >
         <div className="relative">
           <img
-            src={chapterDetail?.poster}
+            src={chapterDetail[0]?.poster}
             alt=""
             className=" h-[203px] w-[330px] md:h-[649px] md:w-[433px] bg-cover object-cover bg-center rounded-[8px]"
           />
@@ -147,12 +151,11 @@ const ChapterPage = () => {
           </div>
         </div>
         <div className="flex flex-col gap-[8px] md:gap-5">
-
           <div className="flex flex-col gap-[8px] md:gap-[40px]">
             {/* name && tương tác */}
             <div className="flex flex-col gap-[8px] md:gap-[21px]">
               <div className="font-semibold text-[14px] leading-[20px] md:text-[45px] md:leading-[52px] text-white">
-                {chapterDetail?.title}
+                {chapterDetail[0]?.title}
               </div>
               {/* tương tác */}
               <div className="flex items-center gap-4">
@@ -178,7 +181,7 @@ const ChapterPage = () => {
                     alt=""
                     className="h-[32px] w-[32px] hidden md:block"
                   />
-                  <div>{`${chapterDetail?.chapters.length} chapter `} </div>
+                  <div>{`${chapterDetail[0]?.chapters.length} chapter `} </div>
                 </div>
               </div>
             </div>
@@ -204,7 +207,7 @@ const ChapterPage = () => {
                 </button>
                 <button className=" p-[8px]  rounded-[12px] md:px-[52px] md:py-[26px] bg-[#F45F17]  text-white md:rounded-[67px]">
                   <div className="font-bold text-[12px] leading-[16px] md:text-[36px] md:leading-[44px] flex gap-1 md:gap-3 ">
-                    <div>{chapterDetail?.rate}</div>
+                    <div>{chapterDetail[0]?.rate}</div>
                     <img
                       src="/images/ChapterPage/Star 3.png"
                       className="h-[20px] w-[20px] md:h-[48px] md:w-[48px] bg-cover object-cover"
@@ -230,14 +233,13 @@ const ChapterPage = () => {
                   ))}
                 </div>
               </div>
-
             </div>
             <div className="flex flex-col gap-[8px] md:gap-[40px]">
               {/* info chapter */}
               <div className="flex flex-col gap-[8px] md:gap-[16px]">
                 <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[24px]  md:leading-[36px] flex items-center gap-2">
                   Author:
-                  <div className="text-white">{chapterDetail?.author}</div>
+                  <div className="text-white">{chapterDetail[0]?.author}</div>
                 </div>
                 <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[24px]  md:leading-[36px] flex items-center gap-2">
                   Artist:
@@ -245,7 +247,9 @@ const ChapterPage = () => {
                 </div>
                 <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[24px]  md:leading-[36px] flex flex-wrap items-center gap-2">
                   Genres:
-                  <div className="text-white">{chapterDetail?.categories}</div>
+                  <div className="text-white">
+                    {chapterDetail[0]?.categories}
+                  </div>
                 </div>
                 <div className="text-[#9E9E9E] font-normal text-[12px] leading-[16px] md:text-[24px]  md:leading-[36px] flex items-center gap-2">
                   Age:
@@ -254,10 +258,14 @@ const ChapterPage = () => {
                 {/* desc */}
                 <div className="">
                   <p className="w-[223px] h-auto text-[11px] font-medium leading-[16px]  md:w-[1000px] md:font-normal md:text-[24px] md:leading-[36px] text-white">
-                    {showFullDescription ? fullDescription : truncatedDescription}
+                    {showFullDescription
+                      ? fullDescription
+                      : truncatedDescription}
                     {!showFullDescription && (
                       <button onClick={() => setShowFullDescription(true)}>
-                        <div className=" underline  underline-offset-4">See All</div>
+                        <div className=" underline  underline-offset-4">
+                          See All
+                        </div>
                       </button>
                     )}
                   </p>
@@ -291,9 +299,7 @@ const ChapterPage = () => {
                   alt=""
                   className="h-[32px] w-[32px]"
                 />
-                <div>
-                  {chapterDetail?.chapters.length} chapters
-                </div>
+                <div>{chapterDetail[0]?.chapters.length} chapters</div>
               </div>
               <div className="px-12 py-6">
                 {sortedChapters
@@ -302,9 +308,9 @@ const ChapterPage = () => {
                     <div key={index}>
                       <ChapterCard
                         chapter={chapter}
-                        title={chapterDetail?.title}
-                        des={chapterDetail?.description}
-                        poster={chapterDetail?.poster}
+                        title={chapterDetail[0]?.title}
+                        des={chapterDetail[0]?.description}
+                        poster={chapterDetail[0]?.poster}
                         slug={slug}
                       />
                     </div>
@@ -322,12 +328,17 @@ const ChapterPage = () => {
           </div>
         )}
       </div>
-      <div className="flex justify-center">{!showTab && 
-      <div className="flex justify-center p-2 bg-black h-[100px] w-full ">
-        <input onChange={(e)=>commentOnchange(e)} className="text-lg w-[60%] rounded-lg"></input>
-        <button className="ml-3 w-[100px] text-lg text-white rounded-lg bg-[rgb(172,93,93)]" onClick={handleSendComment}>Comment</button>
-      </div>
-      }
+      <div className="flex justify-center bg-black h-[100vh]">
+        {!showTab &&
+        <div className="flex flex-col">
+          {
+            chapterDetail[0].comments?.map((cmt, index) => (
+              <CMT key={index} cmt={cmt} reply={cmt.replies} />
+            ))
+          }
+
+        </div>
+          }
       </div>
     </div>
   );
