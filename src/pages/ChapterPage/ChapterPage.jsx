@@ -23,9 +23,10 @@ const ChapterPage = () => {
   const commentOnchange = (e) => {
     setComment(e.target.value)
   };
+  console.log(comment)
   const handleSendComment = async () =>{
     try {
-      const res = await axios.post(`https://hanico.online/manga/${slug}`,comment)
+      const res = await axios.post(`https://hanico.online/login=true/cmanga/${slug}`,comment)
       console.log("send cmt:",res)
     } catch (error) {
       console.log(error)
@@ -336,6 +337,35 @@ const ChapterPage = () => {
               <CMT key={index} cmt={cmt} reply={cmt.replies} />
             ))
           }
+          {/* logined user comment */}
+
+          <div>
+            <div className="antialiased mx-auto max-w-screen-sm scale-150 mt-24 w-[1000px]">
+              <div className="space-y-4">
+                <div className="flex">
+                  <div className="flex-shrink-0 mr-3">
+                    <img
+                      className="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10"
+                      src="https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                      alt=""
+                    />
+                  </div>
+                  <div className="flex-1 border rounded-lg px-4 py-2 leading-relaxed">
+                    <div className="flex items-center">
+                      <strong className="text-white flex items-center">dooxxinhgai@gmail.com</strong>{" "}
+                      
+                    </div>
+                    <div className="flex flex-row gap-6">
+                      <input className="text-lg text-white bg-slate-500 h-24 w-full rounded-lg my-2" onChange={(e)=>commentOnchange(e)}>
+                      
+                      </input>
+                      <button className="bg-slate-500 rounded-lg m-2 w-[20%] text-white font-semibold" onClick={()=>handleSendComment()}>Comment</button> 
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </div>
+          </div>
 
         </div>
           }

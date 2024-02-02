@@ -4,7 +4,6 @@ import useFetch from "../hooks/useFetch";
 
 const ComicRecent = () => {
     const comicRecent = useFetch(1);
-    console.log(comicRecent)
     const firstFiveItem = comicRecent.slice(0, 20);
     return (
         <div className="grid grid-cols-10 gap-[20px] px-[60px] pb-[60px]">

@@ -4,6 +4,8 @@ import { IoMdEyeOff } from "react-icons/io";
 import * as message from "../../components/Message/Message";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import { CiSearch } from "react-icons/ci";
 
 export default function Login() {
   const [input, setInput] = useState("");
@@ -23,21 +25,98 @@ export default function Login() {
       const response = await axios.post("https://hanico.online/login", input);
       if (response?.data.errCode !== 200) {
         message.error(response.data.message);
+        console.log(response.data.account)
       } else {
         message.success(response.data.message);
+        
         sessionStorage.setItem("user", response?.data.account);
+        sessionStorage.setItem("user_email", response?.data.account.email);
+        sessionStorage.setItem("user_id", response?.data.account.id_user);
+        console.log(response)
         navigate("/");
       }
     } catch (error) {
       console.log(error);
     }
   };
-
   const handleSubmit = async () => {
     await loginSubmit();
   };
 
   return (
+  <>
+    <div className="header-top">
+        <Link to="/">
+          <div className="title">
+            <img className="img-manga" src="/images/Ellipse 1.svg" alt=""></img>
+            <h3>MangaSocial</h3>
+          </div>
+        </Link>
+        <div className="menu-header">
+          <Link to="/">
+            <div
+              className="comic"
+            >
+              <p>Comic</p>
+              <img
+                className="arrow-img"
+                alt="Arrow"
+              />
+            </div>
+          </Link>
+
+          <Link to="/genres">
+            <p>Genres</p>
+          </Link>
+
+          <p>Popular</p>
+
+         
+          <div className="dropdown">
+            <button >Server</button>
+          </div>
+          
+
+          <Link to="/contact-us">
+            <p className="contact">Contact us</p>
+          </Link>
+          <Link to="/policy">
+            <p className="policy">Policy</p>
+          </Link>
+          <Link
+            to={`https://apps.apple.com/us/app/manga-reader-mangakomi-online/id6446646720`}
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg"
+              alt=""
+              className="w-5 h-5 lg:w-12 lg:h-12 hover:scale-105 transition-all cursor-pointer"
+            />
+          </Link>
+        </div>
+        <div className="avatar_search">
+          <CiSearch
+            color="red"
+            size={32}
+            className="mr-2"
+          />
+          <input
+            className="w-full border-none outline-none bg-transparent opacity-100"
+            placeholder="Search"
+            name="content"
+          />
+      
+            <div className="flex justify-center align-middle items-center ml-4">
+              <Link to="/login">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                  Login
+                </button>
+              </Link>
+            </div>
+
+        </div>
+      </div>
+      <Outlet></Outlet>
+
     <div className="bg-[url('/public/images/Login/bg-login.jpeg')] w-full h-full  bg-cover bg-center bg-no-repeat " >
       <div className="flex justify-center items-center h-full font-semibold">
         <div className="w-[520px] h-[746px] bg-[#353434] flex flex-col gap-[31px] items-center justify-center rounded-xl  ">
@@ -129,5 +208,6 @@ export default function Login() {
         </div>
       </div>
     </div>
+    </>
   );
 }

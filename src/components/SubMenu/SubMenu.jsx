@@ -42,13 +42,15 @@ const SubMenu = () => {
       console.log(sessionStorage.getItem("user"));
     } catch (error) {
       console.log(error);
+      sessionStorage.clear();
+      navigate("/login");
     }
   };
 
   return (
-    <div className="relative inline-block overflow-x-hidden overflow-y-auto" ref={submenuRef}>
+    <div className="inline-block overflow-x-hidden overflow-y-auto" ref={submenuRef}>
       <button
-        className="relative w-12 h-12 rounded-full inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-red-500 border border-gray-300 shadow-sm  hover:opacity-90"
+        className="w-12 h-12 rounded-full inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-red-500 border border-gray-300 shadow-sm  hover:opacity-90"
         onClick={handleButtonClick}
       >
         D
@@ -57,8 +59,8 @@ const SubMenu = () => {
       <div
         className={`${
           onHidden
-            ? "block origin-top-right absolute right-0 mt-2 w-72 rounded-md shadow-lg bg-white divide-y-2"
-            : "hidden"
+            ? "block origin-top-right mt-2 w-72 rounded-md shadow-lg bg-white divide-y-2 fixed z-1000"
+            : "hidden "
         }`}
       >
         <div
