@@ -78,8 +78,8 @@ export default function Layout() {
         setCheckSearch(true);
       }
       let a = (response.data)[0].id_manga;
-      let url = a.lastIndexOf("manga");
-      path = a.slice(url,1000);
+      let url = a.lastIndexOf("/");
+      path = a.slice(url+1,1000);
       console.log(path)
       setSearch((response.data)[0]);
     } catch (error) {
