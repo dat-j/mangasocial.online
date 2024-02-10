@@ -147,7 +147,7 @@ export default function Layout() {
       <div className="header-top">
         <Link to="/">
           <div className="title">
-            <img className="img-manga" src="/images/Ellipse 1.svg" alt=""></img>
+            <img className="img-manga" src="/images/logo-thinkdiff.png" alt=""></img>
             <h3>MangaSocial</h3>
           </div>
         </Link>
@@ -198,34 +198,34 @@ export default function Layout() {
             {open ? (
               <ul className="menu grid grid-cols-2" onClick={()=>handleOpen()}>
                 <li className="menu-item" >
-                  <button onClick={()=>dispatch(changeServer(1))}>Server 1</button>
+                  <button onClick={()=>dispatch(changeServer(1))}>manganelo.tv</button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(2))}>Server 2</button>
+                  <button onClick={()=>dispatch(changeServer(2))}>mangareader.cc</button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(3))}>Server 3</button>
+                  <button onClick={()=>dispatch(changeServer(3))}>ninemanga.com</button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(4))}>Server 4</button>
+                  <button onClick={()=>dispatch(changeServer(4))}>bestlightnovel.com</button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(5))}>Server 5</button>
+                  <button onClick={()=>dispatch(changeServer(5))}>mangajar.com/manga</button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(6))}>Server 6</button>
+                  <button onClick={()=>dispatch(changeServer(6))}>mangakomi.io</button>
                 </li>
                 <li className="menu-item" >
-                  <button onClick={()=>dispatch(changeServer(7))}>Server 7</button>
+                  <button onClick={()=>dispatch(changeServer(7))}>readm.org</button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(8))}>Server 8</button>
+                  <button onClick={()=>dispatch(changeServer(8))}>mangajar.com</button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(9))}>Server 9</button>
+                  <button onClick={()=>dispatch(changeServer(9))}>swatmanga.net</button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(10))}>Server 10</button>
+                  <button onClick={()=>dispatch(changeServer(10))}>mangajar.com</button>
                 </li>
               </ul>
             ) : null}

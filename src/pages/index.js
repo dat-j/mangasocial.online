@@ -30,6 +30,7 @@ export default function Index() {
   return (
     <>
       <div className="cont">
+       
         {/* <div className="slider">
           <SliderImg
             arrImage={[slider1, slider2, slider3, slider4]}
