@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useParams } from "react-router-dom";
 import SubMenu from "../components/SubMenu/SubMenu";
 import platform from "platform";
 import ios from "../pages/img/ios.png";
@@ -11,16 +11,20 @@ import "../assets/scss/_dropdown.scss";
 import { SviContext } from ".";
 import { changeServer } from "../Redux/Feature/serverSlice";
 import { useDispatch, useSelector } from "react-redux";
+let path = "";
 export default function Layout() {
   const [isHovered, setIsHovered] = useState(false);
   const [isServerHovered, setIsServerHovered] = useState(false);
   const [link, setLink] = useState("");
+
   
   //handle search
   const [input, setInput] = useState("");
   const [search, setSearch] = useState("");
   const [server, setSever] = useState("0");
   const [open, setOpen] = useState(false);
+  const [checkSearch, setCheckSearch]= useState(false);
+  const [url, setURL] = useState("");
   const sv = useSelector((state)=>state.server.sv);
   const dispatch = useDispatch();
   function test(){
@@ -37,6 +41,9 @@ export default function Layout() {
       [name]: value,
     }));
   };
+
+ 
+
   const fetchData = (value) => {
     fetch("https://hanico.online/")
       .then((response) => response.json())
@@ -53,8 +60,7 @@ export default function Layout() {
       const response = await axios.get(
         "https://hanico.online/all-server"
       );
-      console.log("Response: ", response.data
-      );
+      console.log("Response: ", response.data);
     } catch (error) {
       console.log(error);
     }
@@ -64,15 +70,27 @@ export default function Layout() {
   const handleSearch = async () => {
     try {
       const response = await axios.post(
-        "https://hanico.online/search-manga",
+        "https://hanico.online/search-manga-by-name-in-sever/"+sv,
         input
       );
-      console.log("Response: ", response);
+      console.log(response);
+      if(response.status==200){
+        setCheckSearch(true);
+      }
+      let a = (response.data)[0].id_manga;
+      let url = a.lastIndexOf("/");
+      path = a.slice(url+1,1000);
+      console.log(path)
+      setSearch((response.data)[0]);
     } catch (error) {
       console.log(error);
     }
+    
   };
-
+  console.log(path)
+  const handleCloseSearch =()=>{
+    setCheckSearch(false);
+  }
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -124,7 +142,6 @@ export default function Layout() {
     dispatch(changeServer(index));
     this.forceUpdate();
   } 
-
   return (
     <>
       <div className="header-top">
@@ -236,7 +253,8 @@ export default function Layout() {
             color="red"
             size={32}
             onClick={handleSearch}
-            className="mr-2"
+            className="mr-2 cursor-pointer"
+            
           />
           <input
             className="w-full border-none outline-none bg-transparent opacity-100"
@@ -261,6 +279,38 @@ export default function Layout() {
             <SubMenu />
           )}
           {/*  */}
+          {checkSearch?
+          (
+           
+                <div className="h-80 w-[17rem] bg-[#DADADA] absolute mt-[375px] ml-[50px] rounded-lg border-double flex justify-center flex-col items-center">
+                  
+                <div className="w-[90%] h-[30%] border-double border-red-900 rounded-lg flex border-4 cursor-pointer">
+                  <img className="w-1/3 h-full py-2 rounded-lg" src={search?.poster} alt="" />
+                  <Link  to={`/chapter/`+path} onClick={()=>window.location.href="/chapter/"+path}>
+                  <div className="text-lg flex flex-col ml-6 justify-center">
+                    <div>
+                    {search?.title}
+                    </div>
+                    <div>
+                      Rate:{search?.rate}
+                    </div>
+                    <div>
+                      Views: {search?.views}
+                    </div>
+                  </div>
+                  </Link>  
+                </div>
+                
+                <div className="text-white border-5 border-white bg-blue-400 rounded-lg h-6 w-24 flex text-center content-center justify-center mt-[60px]">
+                  <button onClick={()=>handleCloseSearch()}>Close</button>
+                </div>
+              </div>
+            
+        )
+        :(
+          null
+        )
+          }
         </div>
       </div>
       <Outlet></Outlet>
