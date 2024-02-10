@@ -30,7 +30,7 @@ export default function Index() {
   return (
     <>
       <div className="cont">
-        <div className="slider">
+        {/* <div className="slider">
           <SliderImg
             arrImage={[slider1, slider2, slider3, slider4]}
           ></SliderImg>
@@ -39,8 +39,8 @@ export default function Index() {
           </div>
         </div>
         <img className="blur-dots" src="/images/Vector 2.svg" alt=""></img>
-        <div className="background-dots"></div>
-        <div className="title-released-comic mt-[500px]">
+        <div className="background-dots"></div> */}
+        <div className="title-released-comic ">
           <h2>New Released Comic</h2>
           <Link to="/newRelease">
             <p>See all</p>

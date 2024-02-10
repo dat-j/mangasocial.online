@@ -15,8 +15,9 @@ const useFetch = (index) => {
     useEffect(() => {
         getData();
     }, [sv]);
-
     return data;
 };
 
 export default useFetch;
+
+   

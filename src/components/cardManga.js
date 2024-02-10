@@ -16,9 +16,9 @@ const CardManga = ({ poster, title, rate, update, chapter, path_segment }) => {
 
         <div className="text-[#FFFFFF]">
           <div className="mt-5">
-            <h3 className="text-[#FFFFFF] lg:text-[16px] 2xl:text-[18px] leading-10 font-semibold overflow-hidden text-ellipsis whitespace-nowrap w-[200px]">
+            <p className="text-[#FFFFFF] lg:text-[16px] 2xl:text-[18px] leading-10 font-semibold overflow-hidden whitespace-normal w-[200px]">
               {title}
-            </h3>
+            </p>
             <NavLink to={`/chapter/${path_segment}/${chapter}`}>
               <p className="lg:text-[16px] 2xl:text-[18px] leading-8 font-semibold mt-3">
                 Chapter: {chapter}

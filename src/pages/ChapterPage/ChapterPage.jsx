@@ -329,7 +329,7 @@ const ChapterPage = () => {
           </div>
         )}
       </div>
-      <div className="flex justify-center bg-black h-[100vh]">
+      <div className="flex justify-center bg-black h-[1000vh]">
         {!showTab &&
         <div className="flex flex-col">
           {
