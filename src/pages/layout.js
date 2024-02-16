@@ -11,6 +11,7 @@ import "../assets/scss/_dropdown.scss";
 import { SviContext } from ".";
 import { changeServer } from "../Redux/Feature/serverSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Handle_function from "../handle_account/handle";
 let path = "";
 export default function Layout() {
   const [isHovered, setIsHovered] = useState(false);
@@ -107,7 +108,8 @@ export default function Layout() {
   };
 
   let getSessionData = () => {
-    return sessionStorage.getItem("user");
+    return sessionStorage.getItem("user_email");
+    // return Handle_function.isAuthen
   };
 
   let isLogin = getSessionData();

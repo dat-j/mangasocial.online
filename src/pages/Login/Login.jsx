@@ -6,6 +6,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link, Outlet } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
+import Handle_function from "../../handle_account/handle";
+
+import { Buffer } from 'buffer';
+
+
 
 export default function Login() {
   const [input, setInput] = useState("");
@@ -19,10 +24,20 @@ export default function Login() {
       [name]: value,
     }));
   };
-
+//  const loginSubmit = () =>{
+//   Handle_function.Handle_login(input);
+//   Cookies.get("jwt")?navigate("/"):message.error("some things wrong!")
+  
+//  }
+  const token = Buffer.from(`dooxxinhgai@gmail.com:12345678`, 'utf8').toString('base64')
   const loginSubmit = async () => {
     try {
-      const response = await axios.post("https://hanico.online/login", input);
+      const response = await axios.post("https://hanico.online/login", input,
+      {
+        headers: {
+          'Authorization': `Basic ${token}`
+         },
+      });
       if (response?.data.errCode !== 200) {
         message.error(response.data.message);
         console.log(response.data.account)
@@ -32,6 +47,7 @@ export default function Login() {
         sessionStorage.setItem("user", response?.data.account);
         sessionStorage.setItem("user_email", response?.data.account.email);
         sessionStorage.setItem("user_id", response?.data.account.id_user);
+        sessionStorage.setItem("jwt", response?.data.account.jwt);
         console.log(response)
         navigate("/");
       }

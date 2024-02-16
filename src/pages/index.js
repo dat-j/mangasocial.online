@@ -24,6 +24,7 @@ import Recommended from "../components/recommended";
 import ComedyComics from './../components/comeryComics';
 import Top15Comics from "../components/top15Comics";
 import FreeComic from "../components/freeComic";
+import NewsComics from "../components/newsComics";
 
 export default function Index() {
   let sv = useSelector((state)=>state.server.sv)
@@ -41,7 +42,7 @@ export default function Index() {
         </div>
         <img className="blur-dots" src="/images/Vector 2.svg" alt=""></img>
         <div className="background-dots"></div> */}
-        <div className="title-released-comic ">
+        {/* <div className="title-released-comic ">
           <h2>New Released Comic</h2>
           <Link to="/newRelease">
             <p>See all</p>
@@ -99,10 +100,10 @@ export default function Index() {
           <Link>
             <p>See all</p>
           </Link>
-        </div>
+        </div> */}
         <div className="news">
-          <News></News>
-          <NewUsers></NewUsers>
+          <NewsComics />
+          <NewUsers />
         </div>
         <div className="title-released-comic">
           <h2>Rank</h2>

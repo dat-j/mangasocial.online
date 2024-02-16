@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Comments from "../../components/comments";
 import CMT from "../../components/cmt";
+import { Buffer } from "buffer";
 
 const ChapterPage = () => {
   const [showTab, setShowTab] = useState(true);
@@ -16,20 +17,27 @@ const ChapterPage = () => {
   const params = useParams();
   const { slug } = params;
   const sv = useSelector((state)=>state.server.sv);
-
+  const token = Buffer.from(`dooxxinhgai@gmail.com:12345678`, 'utf8').toString('base64')
   const handleShowTab = () => {
     setShowTab(!showTab);
   };
   const commentOnchange = (e) => {
     setComment(e.target.value)
   };
-  console.log(comment)
   const handleSendComment = async () =>{
     try {
-      const res = await axios.post(`https://hanico.online/login=true/cmanga/${slug}`,comment)
+      const res = await axios.post(`https://hanico.online/cmanga/${slug}`,comment,{
+        headers: {
+          'Authorization': `Basic ${token}`
+         },
+         withCredentials:true
+      })
       console.log("send cmt:",res)
+      console.log("comment:",comment)
     } catch (error) {
       console.log(error)
+      console.log("comment:",comment)
+      console.log(slug)
     }
   }
   const fetchChapterDetail = async () => {
@@ -338,7 +346,7 @@ const ChapterPage = () => {
             ))
           }
           {/* logined user comment */}
-
+          {sessionStorage.getItem("user_email")?
           <div>
             <div className="antialiased mx-auto max-w-screen-sm scale-150 mt-24 w-[1000px]">
               <div className="space-y-4">
@@ -352,7 +360,7 @@ const ChapterPage = () => {
                   </div>
                   <div className="flex-1 border rounded-lg px-4 py-2 leading-relaxed">
                     <div className="flex items-center">
-                      <strong className="text-white flex items-center">dooxxinhgai@gmail.com</strong>{" "}
+                      <strong className="text-white flex items-center">{sessionStorage.getItem("user_email")}</strong>{" "}
                       
                     </div>
                     <div className="flex flex-row gap-6">
@@ -366,6 +374,12 @@ const ChapterPage = () => {
                 </div>
             </div>
           </div>
+          :
+          <div>
+            <h1 className="text-4xl text-white mt-6">Please login to comment!</h1>
+          </div>
+          }
+          
 
         </div>
           }

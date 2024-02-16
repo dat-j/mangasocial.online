@@ -5,8 +5,8 @@ import NewUsers from "./newUsers";
 const News = () => {
     return (
         <div>
-            <NewsComics />
-            <NewUsers />
+            
+            
         </div>
     );
 };

@@ -422,9 +422,9 @@ export default function AboutCompany() {
   ];
 
   return (
-    <Container>
-      <div className="about-container">
-        <div className="pre-header">
+    <Container className="overflow-x-hidden">
+      <div className="about-container w-full">
+        {/* <div className="pre-header">
           <div className="container">
             <div className="row">
               <div className="col-lg-8 col-sm-9">
@@ -477,9 +477,9 @@ export default function AboutCompany() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <header className="header-area header-sticky">
+        {/* <header className="header-area header-sticky">
           <div className="container">
             <div className="row">
               <div className="col-12">
@@ -519,10 +519,10 @@ export default function AboutCompany() {
               </div>
             </div>
           </div>
-        </header>
+        </header> */}
 
         <div className="main-banner" id="top">
-          <div className="container">
+          <div className="container mx-60">
             <div className="row">
               <div className="col-lg-7">
                 <div className="caption header-text">
@@ -556,11 +556,11 @@ export default function AboutCompany() {
         </div>
 
         <div className="services section" id="services">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-6 offset-lg-6">
-                <div className="row">
-                  <div className="col-lg-12">
+          <div className="container mx-auto">
+            <div className="flex ">
+              <div className="row-lg-6 offset-lg-6">
+                <div className="flex gap-3">
+                  <div className="row-lg-12">
                     <div className="section-heading">
                       <h2>
                         We Provide <em>Different Services</em> &amp;
@@ -570,7 +570,7 @@ export default function AboutCompany() {
                       <div className="line-dec"></div>
                     </div>
                   </div>
-                  <div className="col-lg-6 col-sm-6">
+                  <div className="col-lg-6 col-sm-6 max-w-[200px]">
                     <div className="service-item">
                       <div className="icon">
                         <img
@@ -582,7 +582,7 @@ export default function AboutCompany() {
                       <h4>Discover more about the latest world trends</h4>
                     </div>
                   </div>
-                  <div className="col-lg-6 col-sm-6">
+                  <div className="col-lg-6 col-sm-6 max-w-[200px]">
                     <div className="service-item">
                       <div className="icon">
                         <img
@@ -594,8 +594,8 @@ export default function AboutCompany() {
                       <h4>Analyze large requirements completely by customer</h4>
                     </div>
                   </div>
-                  <div className="col-lg-6 col-sm-6">
-                    <div className="service-item">
+                  <div className="col-lg-6 col-sm-6 max-w-[200px] ">
+                    <div className="service-item h-[90%]">
                       <div className="icon">
                         <img
                           src={services_03}
@@ -606,8 +606,8 @@ export default function AboutCompany() {
                       <h4>Precise Data Analysis &amp; Prediction</h4>
                     </div>
                   </div>
-                  <div className="col-lg-6 col-sm-6">
-                    <div className="service-item">
+                  <div className="col-lg-6 col-sm-6 max-w-[200px]  ">
+                    <div className="service-item h-[90%]">
                       <div className="icon">
                         <img
                           src={services_04}
@@ -624,10 +624,10 @@ export default function AboutCompany() {
           </div>
         </div>
 
-        <div className="projects section" id="projects">
-          <div className="container">
+        <div className="projects section " id="projects">
+          <div className="container mx-auto">
             <div className="row">
-              <div className="col-lg-6">
+              <div className="">
                 <div className="section-heading">
                   <h2>
                     Discover Our <em>projects</em> &amp; <span>products</span>
@@ -642,10 +642,10 @@ export default function AboutCompany() {
               </div>
             </div>
           </div>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-lg-12">
-                <Slider {...settings}>
+          <div className="container-fluid mx-[150px] ">
+            <div className="row ">
+              <div className="col-lg-6">
+                <Slider {...settings} className=" sliderr">
                   {imageData1.map((item, index) => (
                     <div className="item" key={index}>
                       <img src={item.src} alt={item.title} />
@@ -653,7 +653,22 @@ export default function AboutCompany() {
                         <h4>{item.title}</h4>
                         <p>{item.description}</p>
                         <a href={item.link}>
-                          <i className="fa fa-link"></i>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="46"
+                            height="46"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="0.75"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            className="lucide lucide-download scale-75 opacity-[0.5]"
+                          >
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" x2="12" y1="15" y2="3" />
+                          </svg>
                         </a>
                       </div>
                     </div>
@@ -665,7 +680,7 @@ export default function AboutCompany() {
         </div>
 
         <div className="projects section" id="projects">
-          <div className="container">
+          <div className="container mx-auto">
             <div className="row">
               <div className="col-lg-6">
                 <div className="section-heading">
@@ -682,17 +697,30 @@ export default function AboutCompany() {
               </div>
             </div>
           </div>
-          <div className="container-fluid">
-            <div className="row">
+          <div className="container-fluid mx-[150px]">
+            <div className="row rounded-[30px]">
               <div className="col-lg-12">
-                <Slider {...settings}>
+                <Slider {...settings} className="sliderr">
                   {imageData2.map((item, index) => (
                     <div className="item" key={index}>
                       <img src={item.src} alt={item.title} />
                       <div className="down-content">
                         <h4>{item.title}</h4>
                         <a href={item.link}>
-                          <i className="fa fa-link"></i>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="46"
+                            height="46"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="0.75"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            className="lucide lucide-heart opacity-75 scale-50"
+                          >
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                          </svg>
                         </a>
                       </div>
                     </div>
@@ -704,7 +732,7 @@ export default function AboutCompany() {
         </div>
 
         <div className="projects section" id="projects">
-          <div className="container">
+          <div className="container mx-auto">
             <div className="row">
               <div className="col-lg-6">
                 <div className="section-heading">
@@ -722,7 +750,7 @@ export default function AboutCompany() {
               </div>
             </div>
           </div>
-          <div className="container-fluid">
+          <div className="container-fluid mx-[150px]">
             <div className="row">
               <div className="col-lg-12">
                 <Slider {...settings}>
@@ -732,7 +760,20 @@ export default function AboutCompany() {
                       <div className="down-content">
                         <h4>{item.title}</h4>
                         <a href={item.link}>
-                          <i className="fa fa-link"></i>
+                          <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="46"
+                              height="46"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="0.75"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              className="lucide lucide-heart opacity-75 scale-50"
+                            >
+                              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                            </svg>
                         </a>
                       </div>
                     </div>
@@ -744,7 +785,7 @@ export default function AboutCompany() {
         </div>
 
         <div className="infos section" id="infos">
-          <div className="container">
+          <div className="container mx-auto">
             <div className="row">
               <div className="col-lg-12">
                 <div className="main-content">
@@ -791,7 +832,7 @@ export default function AboutCompany() {
 
                         <div className="skill-slide media">
                           <div className="fill"></div>
-                          <h6>PYHP</h6>
+                          <h6>PHP</h6>
                           <span>90%</span>
                         </div>
                       </div>
@@ -809,31 +850,31 @@ export default function AboutCompany() {
         </div>
 
         <div className="contact-us section" id="about">
-          <div className="container">
+          <div className="container mx-auto">
             <div className="row">
               <div className="col-lg-12">
                 <div className="contact-us-content">
                   <div className="row">
-                    <div className="col-lg-4">
-                      <div id="map">
+                    {/* <div className="col-lg-4">
+                      <div id="map" className="flex">
                         <img src={left_infos_2} alt="" />
                         <img src={left_infos_3} alt="" />
                         <img src={left_infos_4} alt="" />
                       </div>
-                    </div>
+                    </div> */}
                     <div className="col-lg-8">
                       <form id="contact-form" action="" method="post">
                         <div className="row">
                           <div className="col-lg-12">
                             <div className="section-heading">
                               <img src={left_infos_1} alt="" />
-                              <h2>
+                              <h2 className="flex flex-col ">
                                 <em>
                                   Thinkdiff AI Company tuyển dụng intern design
                                   cho các ứng dụng và web ứng dụng trí tuệ nhân
                                   tạo
                                 </em>{" "}
-                                &amp; Ưu tiên ứng viên đã có kiến thức nền tảng
+                                 Ưu tiên ứng viên đã có kiến thức nền tảng
                                 Chấp nhận sinh viên từ năm 2 trở lên
                                 <span>CV gửi về hr@thinkdiff.us</span>
                               </h2>
@@ -841,21 +882,21 @@ export default function AboutCompany() {
                           </div>
                           <div className="more-info1">
                             <div className="row">
-                              <ul>
+                              <ul className="flex justify-evenly">
                                 <li>
-                                  <h4>1.design</h4>
+                                  <h4>Design</h4>
                                 </li>
                                 <li>
-                                  <h4>2.python AI trí tuệ nhân tạo</h4>
+                                  <h4>Python AI trí tuệ nhân tạo</h4>
                                 </li>
                                 <li>
-                                  <h4>3.android developer</h4>
+                                  <h4>Android developer</h4>
                                 </li>
                                 <li>
-                                  <h4>4.ios developer</h4>
+                                  <h4>Ios developer</h4>
                                 </li>
                                 <li>
-                                  <h4> 5.fontend developer</h4>
+                                  <h4>Fontend developer</h4>
                                 </li>
                               </ul>
                             </div>
@@ -871,17 +912,17 @@ export default function AboutCompany() {
         </div>
 
         <div className="contact-us section" id="contact">
-          <div className="container">
+          <div className="container gap-4 mx-auto">
             <div className="row">
               <div className="col-lg-12">
                 <div className="contact-us-content">
-                  <div className="row">
+                  <div className="row flex flex-col items-center">
                     <div className="col-lg-4">
                       <div id="map">
                         <iframe
                           title=""
                           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14900.866002411432!2d105.7578536!3d20.9839569!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134535faf4a3b4b%3A0x583f82c08ae6f1b2!2zQ8O0bmcgdHkgdHLDrSB0deG7hyBuaMOibiB04bqhbyBUaGlua0RpZmY!5e0!3m2!1svi!2s!4v1678721887795!5m2!1svi!2s"
-                          width="350"
+                          width="1150"
                           height="650"
                           loading="lazy"
                           referrerPolicy="no-referrer-when-downgrade"
@@ -889,7 +930,7 @@ export default function AboutCompany() {
                         ></iframe>
                       </div>
                     </div>
-                    <div className="col-lg-8">
+                    <div className="col-lg-8 mt-[30px]">
                       <form id="contact-form" action="" method="post">
                         <div className="row">
                           <div className="col-lg-12">
@@ -992,7 +1033,7 @@ export default function AboutCompany() {
                               environment, free spirit to create global
                               products, we have the goal of creating the best
                               products that attract 100 million users worldwide
-                              world, Congratulations for reading all the
+                              world, congratulations for reading all the
                               information about our company
                             </a>
                           </h4>
@@ -1035,7 +1076,7 @@ export default function AboutCompany() {
                       </div>
 
                       <br />
-
+                      {/* 
                       <div className="more-info">
                         <div className="row">
                           <div className="col-lg-4">
@@ -1067,7 +1108,7 @@ export default function AboutCompany() {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -1077,7 +1118,7 @@ export default function AboutCompany() {
         </div>
 
         <footer>
-          <div className="container">
+          <div className="container mx-auto">
             <div className="col-lg-12">
               <p>
                 Copyright © 2023 <a href="#"> ThinkDiff</a>. All rights
@@ -1095,7 +1136,9 @@ const Container = styled.div`
   .container {
     max-width: 1280px !important;
   }
-
+  .sliderr{
+    border-radius:30px;
+  }
   .about-container {
     font-family: "Open Sans", sans-serif !important;
   }
@@ -2066,6 +2109,7 @@ const Container = styled.div`
       background-color: #fff;
       margin-bottom: 30px;
       transition: all 0.4s;
+      width: 100%;
 
       h4 {
         font-size: 20px;
@@ -2410,6 +2454,9 @@ const Container = styled.div`
       border-radius: 23px;
       padding: 15px 30px 15px 30px;
       color: #ffffff;
+    }
+    .more-info1 h4{
+      color: #fff;
     }
 
     .more-info {
@@ -3208,7 +3255,7 @@ const Container = styled.div`
 
   @media (max-width: 1400px) {
     .main-banner .caption {
-      background-color: rgba(250, 250, 250, 0.95);
+      background-color: rgba(250, 250, 250, 0.75);
       padding: 60px;
       border-radius: 23px;
     }
