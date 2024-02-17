@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ChapterPage.scss";
 import ChapterCard from "../../components/ChapterCard/ChapterCard";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Comments from "../../components/comments";
 import CMT from "../../components/cmt";
@@ -376,7 +376,7 @@ const ChapterPage = () => {
           </div>
           :
           <div>
-            <h1 className="text-4xl text-white mt-6">Please login to comment!</h1>
+            <h1 className="text-4xl text-white mt-6">Please <Link to="/login"><span className="text-[#F45F17] cursor-pointer">login</span></Link> to comment!</h1>
           </div>
           }
           

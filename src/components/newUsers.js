@@ -33,7 +33,7 @@ const NewUsers = () => {
                 return (
                   <Link to="/view-user-profile" state={newUser.id_user}>
                     {" "}
-                    <div className="username" key={newUser.id_user}>
+                    <div className="username md:pt-0 xl:pt-[30px]" key={newUser.id_user}>
                       <img
                         className="avatar"
                         src={newUser.avatar_user}

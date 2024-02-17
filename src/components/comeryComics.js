@@ -6,7 +6,7 @@ const ComedyComics = () => {
     const comedyComics = useFetch(5);
     const firstFiveItem = comedyComics.slice(0, 10);
     return (
-        <div className="grid grid-cols-10 gap-[20px] px-[60px] pb-[60px]">
+        <div className="grid md:grid-cols-5 2xl:grid-cols-10 gap-[20px] px-[60px] pb-[60px]">
             {firstFiveItem.map((item, index) => (
                 <CardManga
                     key={index}

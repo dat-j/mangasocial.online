@@ -8,7 +8,7 @@ const Top15Comics = () => {
 
     const top15Item = top15Comics.slice(0, 15);
     return (
-        <div className="grid grid-cols-10 gap-[20px] px-[60px] pb-[60px]">
+        <div className="grid md:grid-cols-5 2xl:grid-cols-10 gap-[20px] px-[60px] pb-[60px]">
             {top15Item.map((item, index) => (
                 <CardManga
                     key={index}

@@ -10,7 +10,7 @@ const CommingSoon = () => {
     const firstThreeItem = commingSoon.slice(0, 4);
 
     return (
-        <div className="grid grid-cols-4 gap-[30px] px-[60px] pb-[60px]">
+        <div className="grid md:grid-cols-2 2xl:grid-cols-4 gap-[30px] px-[60px] pb-[60px]">
             {firstThreeItem.map((item, index) => (
                 <CardComming
                     key={index}
