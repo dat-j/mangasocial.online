@@ -6,15 +6,16 @@ import { useSelector } from "react-redux";
 const Rank = () => {
     const [rankComics, setRankComics] = useState([]);
      //default rank week = 8
-    const [filterTime, setFilterTime] = useState(8)
+    const [filterTime, setFilterTime] = useState(8);
+    const sv = useSelector((state)=>state.server.sv);
     useEffect(() => {
         getRankComics(filterTime);
-    }, []);
+    }, [sv]);
     const changeTime = (index) =>{
         getRankComics(index);
         console.log(index)
     }
-    const sv = useSelector((state)=>state.server.sv);
+    
     const getRankComics = async (index) => {
         const rankComicsResponse = await prodApis.server(sv);
         setRankComics(rankComicsResponse.data[index].data);

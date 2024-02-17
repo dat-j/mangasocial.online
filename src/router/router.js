@@ -23,6 +23,7 @@ import Policy from "../pages/Policy/Policy.jsx";
 import MangaText from "../pages/MangaText/MangaText.jsx";
 import React from "react";
 import Page_Recommended from "../pages/Recommended/Recommended.js";
+import ViewUserProfile from "../pages/profile/index.js";
 
 
 
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/user-profile",
         element: <UserProfile  />,
+      },
+      {
+        path: "/view-user-profile",
+        element: <ViewUserProfile  />,
       },
       {
         path: "newRelease",

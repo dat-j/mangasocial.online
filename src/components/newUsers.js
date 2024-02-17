@@ -17,6 +17,7 @@ const NewUsers = () => {
     // })();
     const newsResponse = await prodApis.server(sv);
     setNewUser(newsResponse.data[11].data);
+    console.log(newsResponse.data[11].data);
   };
 
   return (
@@ -30,9 +31,9 @@ const NewUsers = () => {
             {newUser &&
               newUser.map((newUser, index) => {
                 return (
-                  <>
+                  <Link to="/view-user-profile" state={newUser.id_user}>
                     {" "}
-                    <div className="username" key={index}>
+                    <div className="username" key={newUser.id_user}>
                       <img
                         className="avatar"
                         src={newUser.avatar_user}
@@ -43,7 +44,7 @@ const NewUsers = () => {
                         {newUser.participation_time}
                       </span>
                     </div>
-                  </>
+                  </Link>
                 );
               })}
          
