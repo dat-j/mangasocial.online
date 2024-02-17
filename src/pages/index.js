@@ -42,7 +42,7 @@ export default function Index() {
         </div>
         <img className="blur-dots" src="/images/Vector 2.svg" alt=""></img>
         <div className="background-dots"></div> */}
-        {/* <div className="title-released-comic ">
+        <div className="title-released-comic ">
           <h2>New Released Comic</h2>
           <Link to="/newRelease">
             <p>See all</p>
@@ -100,7 +100,7 @@ export default function Index() {
           <Link>
             <p>See all</p>
           </Link>
-        </div> */}
+        </div>
         <div className="news">
           <NewsComics />
           <NewUsers />

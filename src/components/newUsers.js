@@ -22,7 +22,7 @@ const NewUsers = () => {
   return (
     <>
       <div>
-        <div className="news-right bg-red-400">
+        <div className="news-right">
           
             <div className="lab">
               <label>NEW USER</label>{" "}

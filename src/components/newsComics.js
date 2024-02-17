@@ -14,7 +14,7 @@ const NewsComics = () => {
     try {
         const newsResponse = await prodApis.server(sv);
         setNews(newsResponse.data[7].data);
-        console.log(newsResponse.data[7])
+        // console.log(newsResponse.data[7].data)
     } catch (error) {
         console.log(error)
     }
@@ -23,7 +23,7 @@ const NewsComics = () => {
     
   };
     return (
-        <div className=" h-[1000px] w-[60%] rounded-xl border-white border-2">
+        <div className="grid grid-cols-3 gap-2 h-[1000px] w-[60%] rounded-xl border-white border-2">
             {news?.map((item, index) => (
                 <NewsComicCard
                     key={index}
@@ -31,6 +31,7 @@ const NewsComics = () => {
                     poster={item.images_poster}
                     time={item.time_news}
                     title={item.title_news}
+                    url={item.url_news}
                 />
             ))}
         </div>

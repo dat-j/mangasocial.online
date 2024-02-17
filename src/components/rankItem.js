@@ -1,9 +1,12 @@
 import React from "react";
+import { NavLink } from 'react-router-dom';
 
-const RankItem = ({ rank, categories, title, poster }) => {
+const RankItem = ({ rank, categories, title, poster,path_segment_manga }) => {
     return (
+        <NavLink  to={`/chapter/${path_segment_manga}`}>
         <div className="flex items-center px-[20px] py-[12px] bg-[#2C2C2C] rounded-[20px] w-[370px] gap-5">
             <h2 className="text-[36px] text-[red] font-bold">{rank}</h2>
+           
             <div className="">
                 <img
                     className="w-[59px] h-[59px] rounded-[12px]"
@@ -11,6 +14,7 @@ const RankItem = ({ rank, categories, title, poster }) => {
                     alt=""
                 />
             </div>
+           
             <div className="text-white">
                 <p className="text-[18px] font-semibold leading-6 overflow-hidden text-ellipsis whitespace-nowrap w-[200px]">
                     {title}
@@ -20,6 +24,7 @@ const RankItem = ({ rank, categories, title, poster }) => {
                 </p>
             </div>
         </div>
+        </NavLink>
     );
 };
 
