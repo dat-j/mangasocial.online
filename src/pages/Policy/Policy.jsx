@@ -6,7 +6,7 @@ export default function Policy() {
       <main>
         <div className="p-4 overflow-y-scroll w-full about_p">
           <h3 className="text-5xl font-semibold ">Privacy Notice</h3>
-          <p class="text-3xl leading-7 ">
+          <p className="text-3xl leading-7 ">
             Last updated: 8 April 2022 This Privacy Notice is designed to help
             you understand how Thinkdiff, a company duly incorporated under the
             Vietnam, which principal place of business is Ha Noi VietNam (“we,”

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import Comments from "../../components/comments";
 import CMT from "../../components/cmt";
 import { Buffer } from "buffer";
+import  Cookies  from "js-cookie";
 
 const ChapterPage = () => {
   const [showTab, setShowTab] = useState(true);
@@ -17,7 +18,8 @@ const ChapterPage = () => {
   const params = useParams();
   const { slug } = params;
   const sv = useSelector((state)=>state.server.sv);
-  const token = Buffer.from(`dooxxinhgai@gmail.com:12345678`, 'utf8').toString('base64')
+  const token = Buffer.from(`dooxxinhgai@gmail.com:12345678`, 'utf8').toString('base64');
+  
   const handleShowTab = () => {
     setShowTab(!showTab);
   };
@@ -26,12 +28,7 @@ const ChapterPage = () => {
   };
   const handleSendComment = async () =>{
     try {
-      const res = await axios.post(`https://hanico.online/cmanga/${slug}`,comment,{
-        headers: {
-          'Authorization': `Basic ${token}`
-         },
-         withCredentials:true
-      })
+      const res = await axios.post(`https://hanico.online/cmanga/${slug}/`,{content:comment})
       console.log("send cmt:",res)
       console.log("comment:",comment)
     } catch (error) {

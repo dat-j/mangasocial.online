@@ -29,18 +29,15 @@ export default function Login() {
 //   Cookies.get("jwt")?navigate("/"):message.error("some things wrong!")
   
 //  }
-  const token = Buffer.from(`dooxxinhgai@gmail.com:12345678`, 'utf8').toString('base64')
+const token = Buffer.from(`dooxxinhgai@gmail.com:12345678`, 'utf8').toString('base64')
   const loginSubmit = async () => {
     try {
-      const response = await axios.post("https://hanico.online/login", input,
-      {
-        headers: {
-          'Authorization': `Basic ${token}`
-         },
-      });
+      
+      const response = await axios.post("https://hanico.online/login", input);
       if (response?.data.errCode !== 200) {
         message.error(response.data.message);
-        console.log(response.data.account)
+        console.log(response);
+        
       } else {
         message.success(response.data.message);
         
@@ -49,6 +46,7 @@ export default function Login() {
         sessionStorage.setItem("user_id", response?.data.account.id_user);
         sessionStorage.setItem("jwt", response?.data.account.jwt);
         console.log(response)
+        // console.log(response.headers.getSetCookie());
         navigate("/");
       }
     } catch (error) {

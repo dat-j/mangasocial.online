@@ -19,7 +19,6 @@ const Rank = () => {
     const getRankComics = async (index) => {
         const rankComicsResponse = await prodApis.server(sv);
         setRankComics(rankComicsResponse.data[index].data);
-        console.log(rankComicsResponse.data[index].data.slice(0,20))
     };
 
     return (
