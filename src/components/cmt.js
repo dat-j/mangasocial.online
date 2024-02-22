@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 const CMT = (props) => {
     const {cmt} = props;
+    const [viewReply, setViewReply] = useState(false);
+    const handleReply = () =>{
+      setViewReply(!viewReply);
+      console.log(viewReply)
+    }
   return (
     // <!-- component -->
-    <div className="antialiased mx-auto max-w-screen-sm scale-150 mt-24 w-[1000px]">
+    <div className=" mx-auto  mt-4 w-full">
 
       <div className="space-y-4">
         <div className="flex">
           <div className="flex-shrink-0 mr-3">
             <img
               className="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10"
-              src="https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+              src={cmt.avatar_user}
               alt=""
             />
           </div>
@@ -24,72 +29,22 @@ const CMT = (props) => {
             <div className="mt-4 flex items-center gap-3">
               
               <div className="text-sm text-white font-semibold">{cmt?.likes} {cmt?.likes==0?"Like":"Likes"}</div>
-              <div className="text-sm text-white font-semibold">{cmt.replies.length} {cmt.replies.length==0?"Reply":"Replies"}</div>
+              <div className="text-sm text-white font-semibold cursor-pointer" onClick={()=>handleReply()}>{cmt.replies.length} {cmt.replies.length==0?"Reply":"Replies"}</div>
             </div>
           </div>
         </div>
 
-        {/* <div className="flex">
-          <div className="flex-shrink-0 mr-3">
-            <img
-              className="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10"
-              src="https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
-              alt=""
-            />
-          </div>
-          <div className="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
-            <strong>Sarah</strong>{" "}
-            <span className="text-xs text-gray-400">3:34 PM</span>
-            <p className="text-sm">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua.
-            </p>
-            <h4 className="my-5 uppercase tracking-wide text-gray-400 font-bold text-xs">
-              Replies
-            </h4>
-            <div className="space-y-4">
-              <div className="flex">
-                <div className="flex-shrink-0 mr-3">
-                  <img
-                    className="mt-3 rounded-full w-6 h-6 sm:w-8 sm:h-8"
-                    src="https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
-                    alt=""
-                  />
-                </div>
-                <div className="flex-1 bg-gray-100 rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
-                  <strong>Sarah</strong>{" "}
-                  <span className="text-xs text-gray-400">3:34 PM</span>
-                  <p className="text-xs sm:text-sm">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua.
-                  </p>
-                </div>
-              </div>
-              <div className="flex">
-                <div className="flex-shrink-0 mr-3">
-                  <img
-                    className="mt-3 rounded-full w-6 h-6 sm:w-8 sm:h-8"
-                    src="https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
-                    alt=""
-                  />
-                </div>
-                <div className="flex-1 bg-gray-100 rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
-                  <strong>Sarah</strong>{" "}
-                  <span className="text-xs text-gray-400">3:34 PM</span>
-                  <p className="text-xs sm:text-sm">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
+       
       </div>
+      {viewReply?(
+       <div className="mt-0 ml-10 w-[full]">
+         <CMT cmt={cmt.replies[0]}/>
+       </div>
+      ):(
+        null
+      )}
     </div>
+    
   );
 };
 

@@ -13,24 +13,26 @@ import { changeServer } from "../Redux/Feature/serverSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Handle_function from "../handle_account/handle";
 let path = "";
+let arr_id_manga = [""];
+let arr_url = [""];
+let arr_path = [""];
 export default function Layout() {
   const [isHovered, setIsHovered] = useState(false);
   const [isServerHovered, setIsServerHovered] = useState(false);
   const [link, setLink] = useState("");
 
-  
   //handle search
   const [input, setInput] = useState("");
   const [search, setSearch] = useState("");
-  const [server, setSever] = useState("0");
+  const [searchData, setSearchData] = useState("");
+  const [idMangaList, setIdMangaList] = useState("0");
   const [open, setOpen] = useState(false);
-  const [checkSearch, setCheckSearch]= useState(false);
+  const [checkSearch, setCheckSearch] = useState(false);
   const [url, setURL] = useState("");
-  const sv = useSelector((state)=>state.server.sv);
+  const sv = useSelector((state) => state.server.sv);
   const dispatch = useDispatch();
-  function test(){
-    
-    console.log("sv:",sv)
+  function test() {
+    console.log("sv:", sv);
   }
   const handleOpen = () => {
     setOpen(!open);
@@ -42,8 +44,6 @@ export default function Layout() {
       [name]: value,
     }));
   };
-
- 
 
   const fetchData = (value) => {
     fetch("https://hanico.online/")
@@ -58,40 +58,43 @@ export default function Layout() {
   };
   const fetchServer = async () => {
     try {
-      const response = await axios.get(
-        "https://hanico.online/all-server"
-      );
+      const response = await axios.get("https://hanico.online/all-server");
       console.log("Response: ", response.data);
     } catch (error) {
       console.log(error);
     }
-    
   };
 
   const handleSearch = async () => {
     try {
       const response = await axios.post(
-        "https://hanico.online/search-manga-by-name-in-sever/"+sv,
+        "https://hanico.online/search-manga-by-name-in-sever/" + sv,
         input
       );
-      console.log(response);
-      if(response.status==200){
+      setSearchData(response.data);
+      console.log(response.data);
+      if (response.status == 200) {
         setCheckSearch(true);
       }
-      let a = (response.data)[0].id_manga;
+      
+      let a = response.data[0].id_manga;
       let url = a.lastIndexOf("/");
-      path = a.slice(url+1,1000);
-      console.log(path)
-      setSearch((response.data)[0]);
+      path = a.slice(url + 1, 1000);
+      setSearch(response.data[0]);
     } catch (error) {
       console.log(error);
     }
-    
   };
-  console.log(path)
-  const handleCloseSearch =()=>{
-    setCheckSearch(false);
+  for (let i = 0; i < searchData?.length; i++) {
+    arr_id_manga[i] = searchData[i].id_manga;
+    arr_url[i] = arr_id_manga[i].lastIndexOf("/");
+    arr_path[i] = arr_id_manga[i].slice(arr_url[i] + 1, 1000);
   }
+  console.log(arr_path);
+  console.log(path);
+  const handleCloseSearch = () => {
+    setCheckSearch(false);
+  };
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -140,16 +143,20 @@ export default function Layout() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  function changeSV(index){
+  function changeSV(index) {
     dispatch(changeServer(index));
     this.forceUpdate();
-  } 
+  }
   return (
     <>
       <div className="header-top">
         <Link to="/">
           <div className="title">
-            <img className="img-manga" src="/images/logo-thinkdiff.png" alt=""></img>
+            <img
+              className="img-manga"
+              src="/images/logo-thinkdiff.png"
+              alt=""
+            ></img>
             <h3>MangaSocial</h3>
           </div>
         </Link>
@@ -196,43 +203,65 @@ export default function Layout() {
             />
           </div> */}
           <div className="dropdown">
-            <button onClick={()=>handleOpen()}>Server</button>
+            <button onClick={() => handleOpen()}>Server</button>
             {open ? (
-              <ul className="menu grid grid-cols-2" onClick={()=>handleOpen()}>
-                <li className="menu-item" >
-                  <button onClick={()=>dispatch(changeServer(1))}>manganelo.tv</button>
+              <ul
+                className="menu grid grid-cols-2"
+                onClick={() => handleOpen()}
+              >
+                <li className="menu-item">
+                  <button onClick={() => dispatch(changeServer(1))}>
+                    manganelo.tv
+                  </button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(2))}>mangareader.cc</button>
+                  <button onClick={() => dispatch(changeServer(2))}>
+                    mangareader.cc
+                  </button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(3))}>ninemanga.com</button>
+                  <button onClick={() => dispatch(changeServer(3))}>
+                    ninemanga.com
+                  </button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(4))}>bestlightnovel.com</button>
+                  <button onClick={() => dispatch(changeServer(4))}>
+                    bestlightnovel.com
+                  </button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(5))}>mangajar.com/manga</button>
+                  <button onClick={() => dispatch(changeServer(5))}>
+                    mangajar.com/manga
+                  </button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(6))}>mangakomi.io</button>
-                </li>
-                <li className="menu-item" >
-                  <button onClick={()=>dispatch(changeServer(7))}>readm.org</button>
-                </li>
-                <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(8))}>mangajar.com</button>
+                  <button onClick={() => dispatch(changeServer(6))}>
+                    mangakomi.io
+                  </button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(9))}>swatmanga.net</button>
+                  <button onClick={() => dispatch(changeServer(7))}>
+                    readm.org
+                  </button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={()=>dispatch(changeServer(10))}>mangajar.com</button>
+                  <button onClick={() => dispatch(changeServer(8))}>
+                    mangajar.com
+                  </button>
+                </li>
+                <li className="menu-item">
+                  <button onClick={() => dispatch(changeServer(9))}>
+                    swatmanga.net
+                  </button>
+                </li>
+                <li className="menu-item">
+                  <button onClick={() => dispatch(changeServer(10))}>
+                    mangajar.com
+                  </button>
                 </li>
               </ul>
             ) : null}
           </div>
-          
 
           <Link to="/contact-us">
             <p className="contact">Contact us</p>
@@ -256,13 +285,13 @@ export default function Layout() {
             size={32}
             onClick={handleSearch}
             className="mr-2 cursor-pointer"
-            
           />
           <input
             className="w-full border-none outline-none bg-transparent opacity-100"
-            placeholder="Enter your email"
+            placeholder="Search..."
             name="content"
             onChange={handleOnChange}
+            onKeyDown={handleSearch}
           />
           {!isLogin ? (
             <div className="flex justify-center align-middle items-center ml-4">
@@ -281,37 +310,40 @@ export default function Layout() {
             <SubMenu />
           )}
           {/*  */}
-          {checkSearch?
-          (
-           
-                <div className="h-80 w-[17rem] bg-[#DADADA] absolute mt-[375px] ml-[50px] rounded-lg border-double flex justify-center flex-col items-center">
-                  
-                <div className="w-[90%] h-[30%] border-double border-red-900 rounded-lg flex border-4 cursor-pointer">
-                  <img className="w-1/3 h-full py-2 rounded-lg" src={search?.poster} alt="" />
-                  <Link  to={`/chapter/`+path} onClick={()=>window.location.href="/chapter/"+path}>
-                  <div className="text-lg flex flex-col ml-6 justify-center">
-                    <div>
-                    {search?.title}
+          {checkSearch ? (
+            <div className="h-80 w-[17rem] bg-[#DADADA] absolute mt-[375px] ml-[50px] rounded-lg border-double flex justify-center flex-col items-center overflow-y-auto ">
+              <hr className="mt-[150px]" />  
+              {searchData ? (
+                searchData.slice(0,3).map((item,index)=>(
+                  <div className="w-[90%] h-full border-double border-red-900 rounded-lg flex border-4 cursor-pointer  ">
+                  <img
+                    className="w-1/3 h-[69%] py-2 rounded-lg"
+                    src={item.poster}
+                    alt=""
+                  />
+                  <Link
+                    to={`/chapter/` + arr_path[index]}
+                    onClick={() => (window.location.href = "/chapter/" + arr_path[index])}
+                    className="flex"
+                  >
+                    <div className="text-lg flex flex-col ml-6 justify-center">
+                      <div>{item.title}</div>
+                      <div>Rate:{item.rate}</div>
+                      <div>Views: {item.views}</div>
                     </div>
-                    <div>
-                      Rate:{search?.rate}
-                    </div>
-                    <div>
-                      Views: {search?.views}
-                    </div>
-                  </div>
-                  </Link>  
+                  </Link>
                 </div>
-                
-                <div className="text-white border-5 border-white bg-blue-400 rounded-lg h-6 w-24 flex text-center content-center justify-center mt-[60px]">
-                  <button onClick={()=>handleCloseSearch()}>Close</button>
-                </div>
+                ))
+              ) : (
+                <p>Not found @@</p>
+              )}
+
+              <div className="text-white border-5 border-white bg-blue-400 rounded-lg h-6 w-24 flex text-center content-center justify-center my-2">
+                <button onClick={() => handleCloseSearch()}>Close</button>
               </div>
-            
-        )
-        :(
+            </div>
+          ) :
           null
-        )
           }
         </div>
       </div>

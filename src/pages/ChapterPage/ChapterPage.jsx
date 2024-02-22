@@ -8,6 +8,7 @@ import Comments from "../../components/comments";
 import CMT from "../../components/cmt";
 import { Buffer } from "buffer";
 import  Cookies  from "js-cookie";
+import CMT_list from "./../../components/cmt_list";
 
 const ChapterPage = () => {
   const [showTab, setShowTab] = useState(true);
@@ -29,7 +30,7 @@ const ChapterPage = () => {
   const handleSendComment = async () =>{
     try {
       const res = await axios.post(`https://hanico.online/cmanga/${slug}/`,{content:comment})
-      console.log("send cmt:",res)
+      console.log("response:",res)
       console.log("comment:",comment)
     } catch (error) {
       console.log(error)
@@ -337,11 +338,7 @@ const ChapterPage = () => {
       <div className="flex justify-center bg-black h-[1000vh]">
         {!showTab &&
         <div className="flex flex-col">
-          {
-            chapterDetail[0].comments?.map((cmt, index) => (
-              <CMT key={index} cmt={cmt} reply={cmt.replies} />
-            ))
-          }
+          <CMT_list cmt_arr={chapterDetail[0].comments}/>
           {/* logined user comment */}
           {sessionStorage.getItem("user_email")?
           <div>
