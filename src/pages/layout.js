@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { Link, NavLink, Outlet, useParams } from "react-router-dom";
 import SubMenu from "../components/SubMenu/SubMenu";
 import platform from "platform";
@@ -20,6 +20,7 @@ export default function Layout() {
   const [isHovered, setIsHovered] = useState(false);
   const [isServerHovered, setIsServerHovered] = useState(false);
   const [link, setLink] = useState("");
+  const submenuRef = useRef(null);
 
   //handle search
   const [input, setInput] = useState("");
@@ -45,6 +46,19 @@ export default function Layout() {
     }));
   };
 
+  const handleClickOutside = (event) => {
+    if (submenuRef.current && !submenuRef.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   const fetchData = (value) => {
     fetch("https://hanico.online/")
       .then((response) => response.json())
@@ -202,8 +216,8 @@ export default function Layout() {
               alt="Arrow"
             />
           </div> */}
-          <div className="dropdown">
-            <button onClick={() => handleOpen()}>Server</button>
+          <div className="dropdown" >
+            <button ref={submenuRef} onClick={() => handleOpen()}>Server</button>
             {open ? (
               <ul
                 className="menu grid grid-cols-2"
