@@ -72,7 +72,7 @@ function UserProfile() {
                     </svg>              
                </div>
               </div>
-              <div className="flex flex-col font-normal text-[28px] items-center justify-center ml-6 mt-6">
+              <div className="flex flex-col font-normal text-[28px]  justify-center ml-6 mt-6">
                 <h2 className="text-[#fff] text-[45px] font-semibold">
                   {userData?.name_user}
                 </h2>
