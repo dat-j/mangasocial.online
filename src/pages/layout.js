@@ -210,59 +210,83 @@ export default function Layout() {
                 onClick={() => handleOpen()}
               >
                 <li className="menu-item">
+                  <button onClick={() => dispatch(changeServer(0))}> {/*change the server index by passing index in changeserver() function*/}
+                  mangainn.net
+                  </button>
+                </li>
+                <li className="menu-item">
                   <button onClick={() => dispatch(changeServer(1))}>
-                    manganelo.tv
-                  </button>
-                </li>
-                <li className="menu-item">
-                  <button onClick={() => dispatch(changeServer(2))}>
-                    mangareader.cc
-                  </button>
-                </li>
-                <li className="menu-item">
-                  <button onClick={() => dispatch(changeServer(3))}>
-                    ninemanga.com
-                  </button>
-                </li>
-                <li className="menu-item">
-                  <button onClick={() => dispatch(changeServer(4))}>
-                    bestlightnovel.com
-                  </button>
-                </li>
-                <li className="menu-item">
-                  <button onClick={() => dispatch(changeServer(5))}>
-                    mangajar.com/manga
-                  </button>
-                </li>
-                <li className="menu-item">
-                  <button onClick={() => dispatch(changeServer(6))}>
-                    mangakomi.io
+                  ww5.manganelo.tv
                   </button>
                 </li>
                 <li className="menu-item">
                   <button onClick={() => dispatch(changeServer(7))}>
-                    readm.org
+                  readm.org
+                  </button>
+                </li>
+                <li className="menu-item">
+                  <button onClick={() => dispatch(changeServer(2))}>
+                  mangareader.cc
+                  </button>
+                </li>
+                <li className="menu-item">
+                  <button onClick={() => dispatch(changeServer(6))}>
+                  mangakomi.io
                   </button>
                 </li>
                 <li className="menu-item">
                   <button onClick={() => dispatch(changeServer(8))}>
-                    mangajar.com
+                  mangajar.com
                   </button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={() => dispatch(changeServer(9))}>
-                    swatmanga.net
+                  <button onClick={() => dispatch(changeServer(5))}>
+                  mangajar.com/manga
                   </button>
                 </li>
                 <li className="menu-item">
-                  <button onClick={() => dispatch(changeServer(10))}>
-                    mangajar.com
+                  <button onClick={() => dispatch(changeServer(18))}>
+                  it.ninemanga.com
+                  </button>
+                </li>
+                <li className="menu-item">
+                  <button onClick={() => dispatch(changeServer(17))}>
+                  fr.ninemanga.com
+                  </button>
+                </li>
+                <li className="menu-item">
+                  <button onClick={() => dispatch(changeServer(16))}>
+                  es.ninemanga.com
                   </button>
                 </li>
               </ul>
             ) : null}
           </div>
-
+          {/* SERVER LIST       index    link
+          --------------------------NOVEL------------------------------------
+                                        "https://www.ninemanga.com",
+                                        "https://mangajar.com/",
+                                  11    "https://www.novelhall.com"
+                                        "https://azoranov.com/series/",         
+                                   4    "https://bestlightnovel.com/",
+                                  12    "https://mto.to/",
+                                        "https://ru.ninemanga.com",
+                                   9    "https://swatmanga.net",
+                --------------------MANGA-----------------------------                        
+                                  14    "https://br.ninemanga.com",
+                                  13    "https://de.ninemanga.com",
+                                  16    "https://es.ninemanga.com",
+                                  17    "https://fr.ninemanga.com",
+                                  18    "https://it.ninemanga.com",
+                                   5    "https://mangajar.com/manga",
+                                   8    "https://mangajar.com",
+                              *    6    "https://mangakomi.io/",
+                              *    2    "https://mangareader.cc",   
+                                   7    "https://readm.org/",   
+                                   1    "https://ww5.manganelo.tv",
+                                   0    "https://www.mangainn.net",
+                                        
+    */}
           <Link to="/contact-us">
             <p className="contact">Contact us</p>
           </Link>
