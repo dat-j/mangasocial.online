@@ -24,6 +24,7 @@ import MangaText from "../pages/MangaText/MangaText.jsx";
 import React from "react";
 import Page_Recommended from "../pages/Recommended/Recommended.js";
 import ViewUserProfile from "../pages/profile/index.js";
+import Novel from "../pages/Novel/Novel.js";
 
 
 
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/novel",
+        element: <Novel />,
       },
       {
         path: "/policy",
