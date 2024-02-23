@@ -41,7 +41,7 @@ const ChapterPage = () => {
   const fetchChapterDetail = async () => {
     try {
       const response = await axios.get(
-        `https://hanico.online/${sv}/manga/${slug}`
+        `https://hanico.online/${sv}/rmanga/${slug}`
       );
       setChapterDetail(response.data);
       console.log("chapter detail:",response.data)
