@@ -19,7 +19,7 @@ const ChapterPage = () => {
   const params = useParams();
   const { slug } = params;
   const sv = useSelector((state)=>state.server.sv);
-  const token = Buffer.from(`dooxxinhgai@gmail.com:12345678`, 'utf8').toString('base64');
+  const user_id = sessionStorage.getItem("user_id")
   
   const handleShowTab = () => {
     setShowTab(!showTab);
@@ -29,7 +29,7 @@ const ChapterPage = () => {
   };
   const handleSendComment = async () =>{
     try {
-      const res = await axios.post(`https://hanico.online/cmanga/${slug}/`,{content:comment})
+      const res = await axios.post(`https://hanico.online/cmanga/${slug}/${user_id}/`,{content:comment})
       console.log("response:",res)
       console.log("comment:",comment)
     } catch (error) {
