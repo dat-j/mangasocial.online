@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 
 const ChapterCard = ({ chapter, title, poster, des, slug }) => {
   const sv = useSelector((state)=>state.server.sv);
-  const chapterNumber = chapter.replace(`http://hanico.online/manga/${slug}/`, '');
+  const chapterNumber = chapter.replace(`http://hanico.online/rmanga/${slug}/`, '');
+  console.log(chapterNumber)
 
   const truncatedDes = des.length > 50 ? `${des.slice(0, 50)}...` : des;
   return (

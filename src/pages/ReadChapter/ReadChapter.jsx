@@ -79,7 +79,7 @@ const ReadChapter = () => {
 
   const handleChangeChapter = async () => {
     const nextChapter = chooseChapter.replace(
-      `http://hanico.online/manga/${slug}/`,
+      `http://hanico.online/rmanga/${slug}/`,
       ""
     );
     console.log(nextChapter);
@@ -88,13 +88,14 @@ const ReadChapter = () => {
   };
 
   let currentChapter = listChapter.indexOf(
-    `http://hanico.online/manga/${slug}/${id}`
+    `http://hanico.online/rmanga/${slug}/${id}`
   );
+  console.log(currentChapter)
 
   const prevChapter = () => {
     if (currentChapter > 0) {
       const prev = listChapter[currentChapter - 1].replace(
-        `http://hanico.online/manga/${slug}/`,
+        `http://hanico.online/rmanga/${slug}/`,
         ""
       );
       currentChapter--;
@@ -108,7 +109,7 @@ const ReadChapter = () => {
   const nextChap = () => {
     if (currentChapter + 2 <= listChapter.length) {
       const next = listChapter[currentChapter + 1].replace(
-        `http://hanico.online/manga/${slug}/`,
+        `http://hanico.online/rmanga/${slug}/`,
         ""
       );
       console.log(currentChapter);
