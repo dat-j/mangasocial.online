@@ -1,8 +1,8 @@
 import React from "react";
-import CardManga from "./cardManga";
 import useFetchNovel from "../hooks/useFetchNovel";
 import Loading from "./Loading/Loading";
 import { Spin } from "antd";
+import NovelCard from "../pages/Novel/NovelCard";
 
 const NovelList = (props) => {
   const { index } = props;
@@ -13,7 +13,7 @@ const NovelList = (props) => {
     <>
       <div className="grid md:grid-cols-5 2xl:grid-cols-10  gap-[20px] px-[60px] pb-[60px]">
         {firstFiveItem.map((item, index) => (
-          <CardManga
+          <NovelCard
             key={index}
             poster={item?.image_poster_link_goc}
             title={item?.title_manga}
