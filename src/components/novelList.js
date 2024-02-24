@@ -1,11 +1,12 @@
 import React from "react";
 import CardManga from "./cardManga";
-import useFetch from "../hooks/useFetch";
+import useFetchNovel from "../hooks/useFetchNovel";
 
 
 
-const NewRelease = () => {
-    const newRelease = useFetch(0);
+const NovelList = (props) => {
+    const {index} = props;
+    const newRelease = useFetchNovel(index);
     console.log(newRelease)
     const firstFiveItem = newRelease.slice(0, 10);
     return (
@@ -26,4 +27,4 @@ const NewRelease = () => {
     );
 };
 
-export default NewRelease;
+export default NovelList;

@@ -1,13 +1,6 @@
-import SliderImg from "../components/sliderImg";
-import SliderImg2 from "../components/sliderImg2";
+
 import CommingSoon from "../components/commingSoon";
-import slider1 from "../assets/imgSlider/Rectangle 1.svg";
-import slider2 from "../assets/imgSlider/image 6.svg";
-import slider3 from "../assets/imgSlider/image 8.svg";
-import slider4 from "../assets/imgSlider/image 9.svg";
-import slider5 from "../assets/imgSlider/image 5.svg";
-import slider6 from "../assets/imgSlider/image 7.png";
-import slider7 from "../assets/imgSlider/Vector 3.png";
+
 import Rank from "../components/rank";
 import ComicRecent from "../components/comicRecent";
 import News from "../components/news";
@@ -89,7 +82,7 @@ export default function Index() {
         </div>
         <ComedyComics />
         <div className="title-released-comic">
-          <h2>Free Comicss</h2>
+          <h2>Free Comics</h2>
           <Link to={`/`}>
             <p>See all</p>
           </Link>

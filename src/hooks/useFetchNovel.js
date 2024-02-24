@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import prodApis from "../api/home";
 import { useSelector } from "react-redux";
 
-const useFetch = (index) => {
+const useFetchNovel = (index) => {
     const [data, setData] = useState([]);
     const sv = useSelector((state)=>state.server.sv);
         const getData = async () => {
-            const response = await prodApis.server(sv);
+            const response = await prodApis.server_novel(sv);
             setData(response.data[index].data);
         };
 
@@ -16,6 +16,6 @@ const useFetch = (index) => {
     return data;
 };
 
-export default useFetch;
+export default useFetchNovel;
 
    

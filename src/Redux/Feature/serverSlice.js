@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    sv:1,
+    sv:0,
 };
 
 export const serverSlice = createSlice({
