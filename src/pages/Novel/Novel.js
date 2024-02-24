@@ -12,11 +12,25 @@ import NewUsers from '../../components/newUsers';
 import Rank from './../../components/rank';
 import Comments from './../../components/comments';
 import NovelList from '../../components/novelList';
+import { Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { changeServer } from '../../Redux/Feature/serverSlice';
+
 
 
 const Novel = () => {
+  const dispatch = useDispatch();
   return (
     <>
+    <div className='flex w-full items-center gap-5  bg-black'>
+        <div className='mx-auto my-4 flex gap-5'>
+          <button className='bg-red-400 h-8 px-2 rounded-lg text-white' onClick={()=>dispatch(changeServer(11))}>novelhall.com</button>
+          <button className='bg-red-400 h-8 px-2 rounded-lg text-white' onClick={()=>dispatch(changeServer(4))}>bestlightnovel.com</button>
+          <button className='bg-red-400 h-8 px-2 rounded-lg text-white' onClick={()=>dispatch(changeServer(12))}>mto.to</button>
+          <button className='bg-red-400 h-8 px-2 rounded-lg text-white' onClick={()=>dispatch(changeServer(9))}>swatmanga.net</button>
+          
+        </div>
+    </div>
     <div className="cont">
       <div className="title-released-comic ">
         <h2>New Released Novel</h2>
@@ -32,7 +46,7 @@ const Novel = () => {
           <p>See all</p>
         </Link>
       </div>
-      <ComicRecent ></ComicRecent>
+      <NovelList index={1}/>
 
       <div className="title-released-comic">
         <h2>Recommended Novel</h2>
@@ -40,14 +54,15 @@ const Novel = () => {
           <p>See all</p>
         </Link>
       </div>
-      <Recommended />
+      <NovelList index={2}/>
+
       <div className="title-released-comic">
         <h2>Comming Soon Novel</h2>
         <Link to="/commingsoon">
           <p>See all</p>
         </Link>
       </div>
-      <CommingSoon></CommingSoon>
+      <NovelList index={3}/>
 
       <div className="title-released-comic">
         <h2>Top 15 Best Novel of the Week</h2>
@@ -55,7 +70,7 @@ const Novel = () => {
           <p>See all</p>
         </Link>
       </div>
-      <Top15Comics />
+      <Top15Comics index={4}/>
 
       <div className="title-released-comic">
         <h2>Comedy Novel</h2>
@@ -63,14 +78,14 @@ const Novel = () => {
           <p>See all</p>
         </Link>
       </div>
-      <ComedyComics />
+      <NovelList index={5}/>
       <div className="title-released-comic">
         <h2>Free Novel</h2>
         <Link to={`/`}>
           <p>See all</p>
         </Link>
       </div>
-      <FreeComic></FreeComic>
+      <NovelList index={6}/>
     </div>
     </>
   )

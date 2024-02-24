@@ -369,7 +369,7 @@ const ChapterPage = () => {
             </div>
           </div>
           :
-          <div>
+          <div className="mx-auto">
             <h1 className="text-4xl text-white mt-6">Please <Link to="/login"><span className="text-[#F45F17] cursor-pointer">login</span></Link> to comment!</h1>
           </div>
           }

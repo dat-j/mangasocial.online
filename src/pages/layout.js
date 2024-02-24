@@ -301,7 +301,7 @@ export default function Layout() {
                                    0    "https://www.mangainn.net",
                                         
     */}
-
+      
           <Link to="/novel" onClick={()=>dispatch(changeServer(4))}> {/* redirect to server novel : bestlightnovel.com*/}
             <p className="novel">Novel</p>
           </Link>
