@@ -91,21 +91,12 @@ const Audio = () => {
           <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
           <line x1="12" x2="12" y1="19" y2="22" />
         </svg>
-        <span>Mic 1</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          className="lucide lucide-chevron-down"
-        >
-          <path d="m6 9 6 6 6-6" />
-        </svg>
+        <select name="cars" id="cars" className="bg-[#817e7e] rounded-none">
+            <option value="Mic 1">Mic 1</option>
+            <option value="Mic 2">Mic 2</option>
+            <option value="Mic 3">Mic 3</option>
+            <option value="Mic 4">Mic 4</option>
+          </select>
       </div>
     </div>
   );

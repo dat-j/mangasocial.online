@@ -12,7 +12,7 @@ import CMT_list from "./../../components/cmt_list";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import Audio from "./../../components/audioPlayer/audioPlayer";
-
+const listTest = ["chap1","chap2"]
 const NovelPage = () => {
   const [showTab, setShowTab] = useState(true);
   const [chapterDetail, setChapterDetail] = useState([]);
@@ -330,24 +330,16 @@ const NovelPage = () => {
                 </svg>{" "}
                 Previous Chapter
               </button>
-              <button className="bg-[#138e00] h-10 px-4 flex items-center text-lg rounded-lg text-white ">
-                {" "}
-                Chuong 1: Lay on
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="lucide lucide-chevron-down"
-                >
-                  <path d="m6 9 6 6 6-6" />
-                </svg>{" "}
-              </button>
+
+
+              <select name="" id="" className="bg-[#138e00]">
+                {
+                    listTest?.map((item,index)=>
+                    <option value={item} key={index}>{item}</option>
+                    )
+                }
+              </select>
+              
               <button className="bg-[#138e00] h-10 px-4 flex items-center text-lg rounded-lg text-white w-50">
                 {" "}
                 Next Chapter
