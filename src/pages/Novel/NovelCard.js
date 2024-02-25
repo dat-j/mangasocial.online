@@ -5,7 +5,7 @@ const NovelCard = ({ poster, title, rate, update, chapter, path_segment }) => {
 
 
   return (
-    <NavLink to={`/chapter/${path_segment}`}>
+    <NavLink to={`/novel/${path_segment}`}>
       <div className=" cursor-pointer">
         <div className="rounded-xl group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30">
           <div className="w-[200px] h-[300px]">

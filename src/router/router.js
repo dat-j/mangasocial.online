@@ -25,6 +25,7 @@ import React from "react";
 import Page_Recommended from "../pages/Recommended/Recommended.js";
 import ViewUserProfile from "../pages/profile/index.js";
 import Novel from "../pages/Novel/Novel.js";
+import NovelPage from "../pages/Novel/NovelPage.js";
 
 
 
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "chapter/:slug/:id",
         element: <ReadChapter />,
+      },
+      {
+        path: "novel/:slug",
+        element: <NovelPage />,
       },
       {
         path: "genres/:category",
