@@ -6,10 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 const SubMenu = () => {
   const navigate = useNavigate();
+  const [avatarUser,setAvatarUser] = useState("");
   // Set value hidden
   const [onHidden, setHidden] = useState(false);
 
   const submenuRef = useRef(null);
+
+  const user_id = sessionStorage?.getItem("user_id");
 
   const handleButtonClick = () => {
     setHidden(!onHidden);
@@ -20,9 +23,17 @@ const SubMenu = () => {
       setHidden(false);
     }
   };
-
-  useEffect(() => {
+  const getUserImg = async () => {
+    try {
+      const res = await axios.get('http://hanico.online/user/'+user_id);
+      setAvatarUser((res.data).avatar_user);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect( () => {
     document.addEventListener("click", handleClickOutside);
+    getUserImg();
 
     return () => {
       document.removeEventListener("click", handleClickOutside);
@@ -49,12 +60,11 @@ const SubMenu = () => {
 
   return (
     <div className="inline-block overflow-x-hidden overflow-y-auto" ref={submenuRef}>
-      <button
-        className="w-12 h-12 rounded-full inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-red-500 border border-gray-300 shadow-sm  hover:opacity-90"
-        onClick={handleButtonClick}
-      >
-        D
-      </button>
+     
+       <div className="w-12 h-12 rounded-full cursor-pointer">
+          <img onClick={handleButtonClick} className="h-full w-full rounded-full" src={avatarUser?avatarUser:null} alt="" srcset="" />
+     
+       </div>
 
       <div
         className={`${

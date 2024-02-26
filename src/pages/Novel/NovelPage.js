@@ -12,7 +12,7 @@ import CMT_list from "./../../components/cmt_list";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import Audio from "./../../components/audioPlayer/audioPlayer";
-const listTest = ["chap1","chap2"]
+const listTest = ["chap1", "chap2"];
 const NovelPage = () => {
   const [showTab, setShowTab] = useState(true);
   const [chapterDetail, setChapterDetail] = useState([]);
@@ -113,18 +113,8 @@ const NovelPage = () => {
             alt=""
             className=" h-[203px] w-[330px] md:h-[649px] md:w-[433px] bg-cover object-cover bg-center rounded-[8px]"
           />
-          <div className="absolute top-0 right-5  hidden md:block ">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="118"
-              height="118"
-              viewBox="0 0 118 118"
-              fill="none"
-            >
-              <path
-                d="M0 0H118V59C118 91.5848 91.5848 118 59 118C26.4152 118 0 91.5848 0 59V0Z"
-                fill="#1E1E1E"
-              />
+          {chapterDetail?.r18 ? (
+            <div className="absolute top-0 right-5  hidden md:block ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="118"
@@ -133,23 +123,33 @@ const NovelPage = () => {
                 fill="none"
               >
                 <path
-                  d="M0 0H118V59C118 91.5848 91.5848 118 59 118C26.4152 118 0 91.5848 0 27.8K like59V0Z"
+                  d="M0 0H118V59C118 91.5848 91.5848 118 59 118C26.4152 118 0 91.5848 0 59V0Z"
                   fill="#1E1E1E"
                 />
-                <text
-                  x="10%"
-                  y="50%"
-                  fontSize="57px"
-                  fontWeight="bold"
-                  fill="white"
-                  tex="middle"
-                  dominantBaseline="middle"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="118"
+                  height="118"
+                  viewBox="0 0 118 118"
+                  fill="none"
                 >
-                  18+
-                </text>
+                  <path
+                    d="M0 0H118V59C118 91.5848 91.5848 118 59 118C26.4152 118 0 91.5848 0 27.8K like59V0Z"
+                    fill="#1E1E1E"
+                  />
+                  <text
+                    x="10%"
+                    y="50%"
+                    fontSize="57px"
+                    fontWeight="bold"
+                    fill="white"
+                    tex="middle"
+                    dominantBaseline="middle"
+                  ></text>
+                </svg>
               </svg>
-            </svg>
-          </div>
+            </div>
+          ) : null}
           <div className="absolute top-0 left-0 hidden md:block ">
             <div className="relative ">
               <img
@@ -331,15 +331,14 @@ const NovelPage = () => {
                 Previous Chapter
               </button>
 
-
               <select name="" id="" className="bg-[#138e00]">
-                {
-                    listTest?.map((item,index)=>
-                    <option value={item} key={index}>{item}</option>
-                    )
-                }
+                {listTest?.map((item, index) => (
+                  <option value={item} key={index}>
+                    {item}
+                  </option>
+                ))}
               </select>
-              
+
               <button className="bg-[#138e00] h-10 px-4 flex items-center text-lg rounded-lg text-white w-50">
                 {" "}
                 Next Chapter
