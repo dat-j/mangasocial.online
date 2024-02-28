@@ -12,10 +12,11 @@ import CMT_list from "./../../components/cmt_list";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import Audio from "./../../components/audioPlayer/audioPlayer";
-const listTest = ["chap1", "chap2"];
 const NovelPage = () => {
   const [showTab, setShowTab] = useState(true);
   const [chapterDetail, setChapterDetail] = useState([]);
+  const [chapterData, setChapterData] = useState("");
+  const [subTitle, setSubTitle] = useState("");
   const [visibleChapterCount, setVisibleChapterCount] = useState(12);
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [comment, setComment] = useState("");
@@ -23,6 +24,23 @@ const NovelPage = () => {
   const { slug } = params;
   const sv = useSelector((state) => state.server.sv);
   const user_id = sessionStorage.getItem("user_id");
+
+
+  const handleChapter = () =>{
+    let selectChapter = document.getElementById("chapterList");
+    let selectedChapter = selectChapter.options[selectChapter.selectedIndex].value;
+    fetchChapterContent(selectedChapter);
+  }
+
+  const fetchChapterContent = async (link_novel) => {
+    const res = await axios.get(link_novel);
+    setChapterData(res.data);
+    let content = res.data.content;
+    let first = content.indexOf("Chapter ");
+    let last = content.indexOf("Chapter",first+1);
+    setSubTitle(content.substring(first+10,last))
+    
+  }
 
   const handleShowTab = () => {
     setShowTab(!showTab);
@@ -306,9 +324,9 @@ const NovelPage = () => {
         {showTab && (
           <div className="bg-black mx-36 ] ">
             <div className="flex flex-col justify-center items-center pt-8">
-              <h1 className="text-6xl text-white ">Bach Luyen Thanh Than</h1>
+              <h1 className="text-6xl text-white ">{chapterDetail[0]?.title}</h1>
               <h3 className="text-3xl text-gray-400 pt-4">
-                <span>Chuong 1:Lay on bao oan</span>
+                <span>{subTitle}</span>
               </h3>
             </div>
             <div className="flex gap-3 justify-center pt-10">
@@ -331,10 +349,10 @@ const NovelPage = () => {
                 Previous Chapter
               </button>
 
-              <select name="" id="" className="bg-[#138e00] w-[200px] rounded-lg text-white">
-                {listTest?.map((item, index) => (
-                  <option value={item} key={index}>
-                    {item}
+              <select name="chapterList" id="chapterList" className="bg-[#138e00] w-[200px] rounded-lg text-white justify-center" onChange={()=>handleChapter()}>
+                {chapterDetail[0]?.chapters.map((item, index) => (
+                  <option  value={item} key={index}>
+                    {item.replace("http://hanico.online/rnovel/"+slug+"/","")}
                   </option>
                 ))}
               </select>
@@ -364,62 +382,7 @@ const NovelPage = () => {
 
             <div className="pt-8 ">
               <p className="text-3xl text-white">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
-                quam eveniet voluptate, aperiam corporis architecto optio ab
-                maiores pariatur ex veritatis et provident ut, rerum officia rem
-                ratione, veniam accusamus? Lorem ipsum, dolor sit amet
-                consectetur adipisicing elit. Corrupti labore explicabo fugiat
-                voluptatem hic voluptates cumque architecto dolores quod ab,
-                rerum ipsam alias cum temporibus nam saepe dolore libero nulla.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
-                quam eveniet voluptate, aperiam corporis architecto optio ab
-                maiores pariatur ex veritatis et provident ut, rerum officia rem
-                ratione, veniam accusamus? Lorem ipsum, dolor sit amet
-                consectetur adipisicing elit. Corrupti labore explicabo fugiat
-                voluptatem hic voluptates cumque architecto dolores quod ab,
-                rerum ipsam alias cum temporibus nam saepe dolore libero nulla.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
-                quam eveniet voluptate, aperiam corporis architecto optio ab
-                maiores pariatur ex veritatis et provident ut, rerum officia rem
-                ratione, veniam accusamus? Lorem ipsum, dolor sit amet
-                consectetur adipisicing elit. Corrupti labore explicabo fugiat
-                voluptatem hic voluptates cumque architecto dolores quod ab,
-                rerum ipsam alias cum temporibus nam saepe dolore libero nulla.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
-                quam eveniet voluptate, aperiam corporis architecto optio ab
-                maiores pariatur ex veritatis et provident ut, rerum officia rem
-                ratione, veniam accusamus? Lorem ipsum, dolor sit amet
-                consectetur adipisicing elit. Corrupti labore explicabo fugiat
-                voluptatem hic voluptates cumque architecto dolores quod ab,
-                rerum ipsam alias cum temporibus nam saepe dolore libero nulla.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
-                quam eveniet voluptate, aperiam corporis architecto optio ab
-                maiores pariatur ex veritatis et provident ut, rerum officia rem
-                ratione, veniam accusamus? Lorem ipsum, dolor sit amet
-                consectetur adipisicing elit. Corrupti labore explicabo fugiat
-                voluptatem hic voluptates cumque architecto dolores quod ab,
-                rerum ipsam alias cum temporibus nam saepe dolore libero nulla.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
-                quam eveniet voluptate, aperiam corporis architecto optio ab
-                maiores pariatur ex veritatis et provident ut, rerum officia rem
-                ratione, veniam accusamus? Lorem ipsum, dolor sit amet
-                consectetur adipisicing elit. Corrupti labore explicabo fugiat
-                voluptatem hic voluptates cumque architecto dolores quod ab,
-                rerum ipsam alias cum temporibus nam saepe dolore libero nulla.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
-                quam eveniet voluptate, aperiam corporis architecto optio ab
-                maiores pariatur ex veritatis et provident ut, rerum officia rem
-                ratione, veniam accusamus? Lorem ipsum, dolor sit amet
-                consectetur adipisicing elit. Corrupti labore explicabo fugiat
-                voluptatem hic voluptates cumque architecto dolores quod ab,
-                rerum ipsam alias cum temporibus nam saepe dolore libero nulla.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
-                quam eveniet voluptate, aperiam corporis architecto optio ab
-                maiores pariatur ex veritatis et provident ut, rerum officia rem
-                ratione, veniam accusamus? Lorem ipsum, dolor sit amet
-                consectetur adipisicing elit. Corrupti labore explicabo fugiat
-                voluptatem hic voluptates cumque architecto dolores quod ab,
-                rerum ipsam alias cum temporibus nam saepe dolore libero nulla.
+                {chapterData?.content}
               </p>
             </div>
           </div>

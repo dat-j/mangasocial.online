@@ -77,6 +77,15 @@ const ReadChapter = () => {
     // eslint-disable-next-line
   }, [slug, id]);
 
+  const handleChapter = (e) =>{
+    let selectChapter = document.getElementById("chapterList");
+    let selectedChapter = selectChapter.options[selectChapter.selectedIndex].value;
+    console.log(selectedChapter);
+    setChooseChapter(e.target.value);
+    const linkChapter = selectedChapter.replace(`http://hanico.online/rmanga/${slug}/`,
+    "");
+    navigate(`/chapter/${slug}/${linkChapter}`);
+  }
   const handleChangeChapter = async () => {
     const nextChapter = chooseChapter.replace(
       `http://hanico.online/rmanga/${slug}/`,
@@ -140,13 +149,13 @@ const ReadChapter = () => {
           <div className="">
             <select
               name="cars"
-              id="cars"
+              id="chapterList"
               className="w-[450px] h-[40px] px-3 rounded-lg"
-              onChange={(e) => setChooseChapter(e.target.value)}
+              onChange={(e)=>handleChapter(e)}
               value={chooseChapter}
             >
               {listChapter?.map((item, index) => (
-                <option key={index} value={item} onClick={handleChangeChapter}>
+                <option key={index} value={item} >
                   {item}
                 </option>
               ))}
@@ -190,13 +199,13 @@ const ReadChapter = () => {
           <div className="">
             <select
               name="cars"
-              id="cars"
+              id="chapterList"
               className="w-[450px] h-[40px] px-3 rounded-lg"
-              onChange={(e) => setChooseChapter(e.target.value)}
+              onChange={()=>handleChapter()}
               value={chooseChapter}
             >
               {listChapter?.map((item, index) => (
-                <option key={index} value={item} onClick={handleChangeChapter}>
+                <option key={index} value={item}>
                   {item}
                 </option>
               ))}
