@@ -47,7 +47,7 @@ const NovelPage = () => {
   const fetchChapterDetail = async () => {
     try {
       const response = await axios.get(
-        `https://hanico.online/${sv}/rmanga/${slug}`
+        `https://hanico.online/rnovel/${slug}`
       );
       setChapterDetail(response.data);
       console.log("chapter detail:", response.data);
@@ -331,7 +331,7 @@ const NovelPage = () => {
                 Previous Chapter
               </button>
 
-              <select name="" id="" className="bg-[#138e00]">
+              <select name="" id="" className="bg-[#138e00] w-[200px] rounded-lg text-white">
                 {listTest?.map((item, index) => (
                   <option value={item} key={index}>
                     {item}
