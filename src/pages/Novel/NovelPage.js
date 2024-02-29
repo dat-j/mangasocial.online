@@ -13,7 +13,7 @@ import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import Audio from "./../../components/audioPlayer/audioPlayer";
 import TextToSpeech from "../../components/textToSpeech";
-import TTS from './../../components/TextToSpeech/TTS';
+import TTS from "../../components/TextToSpeech/TTS";
 const NovelPage = () => {
   const [showTab, setShowTab] = useState(true);
   const [chapterDetail, setChapterDetail] = useState([]);
@@ -419,7 +419,7 @@ const NovelPage = () => {
             </div>
             <div className="w-[70%] pt-8 mx-auto">
               {/* <TextToSpeech content={chapterData?.content} text={chapterData?.content} /> */}
-              <TTS text={chapterData?.content}/>
+              <TTS content={chapterData?.content}/> {/*text-to-speech and highlight*/}
             </div>
           </div>
         )}
