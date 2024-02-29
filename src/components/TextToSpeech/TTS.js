@@ -8,8 +8,8 @@ export default function App({ content }) {
   const [volume, setVolume] = useState(1);
   const handleVoiceChange = (event) => {
     const voices = window.speechSynthesis.getVoices();
-    setVoice(event.target.value);
-    console.log(event.target.value)
+    // setVoice(voices.find((v) => v.name === event.target.value));
+    setVoice(event.target.value)
   };
 
   const handlePitchChange = (event) => {
@@ -23,7 +23,6 @@ export default function App({ content }) {
   const handleVolumeChange = (event) => {
     setVolume(parseFloat(event.target.value));
   };
-  console.log(voice)
   const { Text, speechStatus, start, pause, stop } = useSpeech({
     text: (
       <div className="text-lg text-white pt-8">
@@ -32,7 +31,7 @@ export default function App({ content }) {
     ),
     highlightText: true,
     highlightProps: { style: { color: "white", backgroundColor: "blue" } },
-    voiceURI:""+voice,
+    voiceURI:voice,
     volume:volume,
     rate:rate,
     pitch:pitch
