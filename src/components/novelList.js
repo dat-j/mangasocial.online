@@ -1,11 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import useFetchNovel from "../hooks/useFetchNovel";
 import Loading from "./Loading/Loading";
 import { Spin } from "antd";
 import NovelCard from "../pages/Novel/NovelCard";
 
-const NovelList = (props) => {
-  const { index } = props;
+const NovelList = memo(function NovelList({index}) {
   const newRelease = useFetchNovel(index);
   console.log(newRelease);
   const firstFiveItem = newRelease.slice(0, 10);
@@ -26,6 +25,6 @@ const NovelList = (props) => {
       </div>
     </>
   );
-};
+});
 
 export default NovelList;

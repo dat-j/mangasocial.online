@@ -140,8 +140,25 @@ function UserProfile() {
     inputRef.current.click();
   };
   const chosefile = (e) => {
-    let file = e.target.files[0];
-    console.log(file);
+    const file = e.target.files[0];
+    axios
+    .post("https://hanico.online/user/setting/" + sessionStorage.getItem("user_id")+"/", {gender:userData.gender,avatar_user:file},{
+      headers:{
+        "Content-Type":"multipart/form-data",
+      }
+    })
+    .then((response) => {
+      if(response.status===200){
+        alert("Update avatar successfull!");
+        window.location.reload();
+      }
+      else{
+        alert("Something Wrong!")
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
   useEffect(() => {
     fetchUserData();

@@ -13,12 +13,13 @@ import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import Audio from "./../../components/audioPlayer/audioPlayer";
 import TextToSpeech from "../../components/textToSpeech";
+import TTS from './../../components/TextToSpeech/TTS';
 const NovelPage = () => {
   const [showTab, setShowTab] = useState(true);
   const [chapterDetail, setChapterDetail] = useState([]);
   const [chapterData, setChapterData] = useState("");
   const [subTitle, setSubTitle] = useState("");
-  const [listChap,setListChap] = useState("");
+  const [listChap, setListChap] = useState("");
   const [visibleChapterCount, setVisibleChapterCount] = useState(12);
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [comment, setComment] = useState("");
@@ -26,49 +27,45 @@ const NovelPage = () => {
   const { slug } = params;
   const sv = useSelector((state) => state.server.sv);
   const user_id = sessionStorage.getItem("user_id");
-  const [currentChap,setCurrentChap] = useState("");
+  const [currentChap, setCurrentChap] = useState("");
+  const text =
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora delectus maiores dolores iste in autem accusantium corrupti dolorum ex molestias aut magni voluptates obcaecati esse, impedit, nam numquam repudiandae recusandae!";
 
-  
-  
-  const handleChapter = () =>{
+  const handleChapter = () => {
     let selectChapter = document.getElementById("chapterList");
-    let selectedChapter = selectChapter.options[selectChapter.selectedIndex].value;
+    let selectedChapter =
+      selectChapter.options[selectChapter.selectedIndex].value;
     fetchChapterContent(selectedChapter);
     setCurrentChap(selectedChapter);
-  }
-  const nextChap = () =>{
+  };
+  const nextChap = () => {
     let indexOfCurrentChap = listChap.indexOf(currentChap);
-    if(indexOfCurrentChap==listChap.length-1){
-      alert("Last Chapter!")
+    if (indexOfCurrentChap == listChap.length - 1) {
+      alert("Last Chapter!");
+    } else {
+      fetchChapterContent(chapterDetail[0].chapters[indexOfCurrentChap + 1]);
+      setCurrentChap(chapterDetail[0].chapters[indexOfCurrentChap + 1]);
     }
-    else{
-      fetchChapterContent(chapterDetail[0].chapters[indexOfCurrentChap+1]);
-    setCurrentChap(chapterDetail[0].chapters[indexOfCurrentChap+1])
-    }
-
-  }
-  const prevChap = () =>{
+  };
+  const prevChap = () => {
     let indexOfCurrentChap = listChap.indexOf(currentChap);
-    console.log(indexOfCurrentChap)
-    if(indexOfCurrentChap==0){
-      alert("Cannot!")
+    console.log(indexOfCurrentChap);
+    if (indexOfCurrentChap == 0) {
+      alert("Cannot!");
+    } else {
+      fetchChapterContent(chapterDetail[0].chapters[indexOfCurrentChap - 1]);
+      setCurrentChap(chapterDetail[0].chapters[indexOfCurrentChap - 1]);
     }
-    else{
-      fetchChapterContent(chapterDetail[0].chapters[indexOfCurrentChap-1]);
-    setCurrentChap(chapterDetail[0].chapters[indexOfCurrentChap-1])
-    }
-
-  }
+  };
 
   const fetchChapterContent = async (link_novel) => {
     const res = await axios.get(link_novel);
     setChapterData(res.data);
     let content = res.data.content;
     let first = content.indexOf("Chapter ");
-    let last = content.indexOf("Chapter",first+1);
-    setSubTitle(content.substring(first+10,last))
-    
-  }
+    let last = content.indexOf("Chapter", first + 1);
+    setSubTitle(content.substring(first + 10, last));
+  };
 
   const handleShowTab = () => {
     setShowTab(!showTab);
@@ -92,9 +89,7 @@ const NovelPage = () => {
   };
   const fetchChapterDetail = async () => {
     try {
-      const response = await axios.get(
-        `https://hanico.online/rnovel/${slug}`
-      );
+      const response = await axios.get(`https://hanico.online/rnovel/${slug}`);
       setChapterDetail(response.data);
       setCurrentChap(response.data[0].chapters[0]);
       setListChap(response.data[0].chapters);
@@ -353,13 +348,18 @@ const NovelPage = () => {
         {showTab && (
           <div className="bg-black mx-36 ] ">
             <div className="flex flex-col justify-center items-center pt-8">
-              <h1 className="text-6xl text-white ">{chapterDetail[0]?.title}</h1>
+              <h1 className="text-6xl text-white ">
+                {chapterDetail[0]?.title}
+              </h1>
               <h3 className="text-3xl text-gray-400 pt-4">
                 <span>{subTitle}</span>
               </h3>
             </div>
             <div className="flex gap-3 justify-center pt-10">
-              <button className="bg-[#138e00] h-10 px-4 flex items-center text-lg rounded-lg text-white w-50" onClick={prevChap}>
+              <button
+                className="bg-[#138e00] h-10 px-4 flex items-center text-lg rounded-lg text-white w-50"
+                onClick={prevChap}
+              >
                 {" "}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -378,15 +378,27 @@ const NovelPage = () => {
                 Previous Chapter
               </button>
 
-              <select defaultValue='aaa' name="chapterList" id="chapterList" className="bg-[#138e00] w-[200px] rounded-lg text-white justify-center" onChange={()=>handleChapter()}>
+              <select
+                defaultValue="aaa"
+                name="chapterList"
+                id="chapterList"
+                className="bg-[#138e00] w-[200px] rounded-lg text-white justify-center"
+                onChange={() => handleChapter()}
+              >
                 {chapterDetail[0]?.chapters.map((item, index) => (
-                  <option  value={item} key={index}>
-                    {item.replace("http://hanico.online/rnovel/"+slug+"/","")}
+                  <option value={item} key={index}>
+                    {item.replace(
+                      "http://hanico.online/rnovel/" + slug + "/",
+                      ""
+                    )}
                   </option>
                 ))}
               </select>
 
-              <button className="bg-[#138e00] h-10 px-4 flex items-center text-lg rounded-lg text-white w-50" onClick={nextChap}>
+              <button
+                className="bg-[#138e00] h-10 px-4 flex items-center text-lg rounded-lg text-white w-50"
+                onClick={nextChap}
+              >
                 {" "}
                 Next Chapter
                 <svg
@@ -406,19 +418,12 @@ const NovelPage = () => {
               </button>
             </div>
             <div className="w-[70%] pt-8 mx-auto">
-            <TextToSpeech text={chapterData.content}/>
-            </div>
-
-            <div className="pt-8 ">
-              <p className="text-3xl text-white">
-                {chapterData?.content}
-              </p>
+              {/* <TextToSpeech content={chapterData?.content} text={chapterData?.content} /> */}
+              <TTS text={chapterData?.content}/>
             </div>
           </div>
         )}
       </div>
-
-      
 
       <div className="flex justify-center bg-black h-[1000vh]">
         {!showTab && (
